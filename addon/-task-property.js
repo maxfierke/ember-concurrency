@@ -354,6 +354,7 @@ export const Task = EmberObject.extend(TaskStateMixin, {
       _debug: this._debug,
       _origin: this,
       _performType: performType,
+      _retryPolicy: this._scheduler.retryPolicy
     });
 
     if (performType === PERFORM_TYPE_LINKED) {

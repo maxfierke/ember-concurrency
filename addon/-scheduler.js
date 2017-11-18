@@ -102,6 +102,7 @@ const Scheduler = EmberObject.extend({
       set(this, 'lastComplete', taskInstance);
       if (state === 1) {
         set(this, 'lastSuccessful', taskInstance);
+        once(taskInstance._retryPolicy, 'reset', taskInstance);
       } else {
         if (state === 2) {
           set(this, 'lastErrored', taskInstance);

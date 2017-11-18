@@ -6,14 +6,20 @@ import {
   cancelOngoingTasksPolicy,
   dropButKeepLatestPolicy
 } from './-buffer-policy';
+import {
+  DelayBackOffPolicy,
+  noopRetryPolicy
+} from './-retry-policy';
 
 export const propertyModifiers = {
   // by default, task(...) expands to task(...).enqueue().maxConcurrency(Infinity)
   _bufferPolicy: enqueueTasksPolicy,
+  _retryPolicy: noopRetryPolicy,
   _maxConcurrency: Infinity,
   _taskGroupPath: null,
   _hasUsedModifier: false,
   _hasSetBufferPolicy: false,
+  _hasSetRetryPolicy: false,
 
   restartable() {
     return setBufferPolicy(this, cancelOngoingTasksPolicy);
@@ -44,6 +50,10 @@ export const propertyModifiers = {
     return this;
   },
 
+  retryable(options) {
+    return setRetryPolicy(this, options);
+  },
+
   debug() {
     this._debug = true;
     return this;
@@ -63,6 +73,15 @@ function setBufferPolicy(obj, policy) {
   return obj;
 }
 
+function setRetryPolicy(obj, options) {
+  obj._hasSetRetryPolicy = true;
+  obj._hasUsedModifier = true;
+  obj._retryPolicy = new DelayBackOffPolicy(options);
+  assertModifiersNotMixedWithGroup(obj);
+
+  return obj;
+}
+
 function assertModifiersNotMixedWithGroup(obj) {
   assert(`ember-concurrency does not currently support using both .group() with other task modifiers (e.g. drop(), enqueue(), restartable())`, !obj._hasUsedModifier || !obj._taskGroupPath);
 }
@@ -75,6 +94,7 @@ export function resolveScheduler(propertyObj, obj, TaskGroup) {
   } else {
     return Scheduler.create({
       bufferPolicy: propertyObj._bufferPolicy,
+      retryPolicy: propertyObj._retryPolicy,
       maxConcurrency: propertyObj._maxConcurrency
     });
   }

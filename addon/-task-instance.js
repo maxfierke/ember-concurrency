@@ -12,6 +12,7 @@ import {
   YIELDABLE_CANCEL,
   RawValue
 } from './utils';
+import { noopRetryPolicy } from './-retry-policy';
 
 const TASK_CANCELATION_NAME = 'TaskCancelation';
 
@@ -107,6 +108,7 @@ let taskInstanceAttrs = {
   cancelReason: null,
   _performType: PERFORM_TYPE_DEFAULT,
   _expectsLinkedYield: false,
+  _retryPolicy: noopRetryPolicy,
 
   /**
    * If this TaskInstance runs to completion by returning a property
@@ -129,6 +131,16 @@ let taskInstanceAttrs = {
    * @readOnly
    */
   error: null,
+
+  /**
+   * Indicates the number of times this TaskInstance has been retried in
+   * accordance with an attached retry policy.
+   *
+   * @memberof TaskInstance
+   * @instance
+   * @readonly
+   */
+  retryCount: 0,
 
   /**
    * True if the task instance is fulfilled.
@@ -175,6 +187,14 @@ let taskInstanceAttrs = {
    * @readOnly
    */
   isFinished: false,
+
+  /**
+   * True if the task is retrying after an error occurred
+   *
+   * @instance
+   * @readOnly
+   */
+  isRetrying: false,
 
   /**
    * True if the task is still running.
@@ -405,6 +425,29 @@ let taskInstanceAttrs = {
     }
   },
 
+  /**
+   * Resets the TaskInstance generator state to the point where it can be run
+   * again. Used for tasks with `.retryable()` modifier to retry task instances
+   * transparently.
+   *
+   * @private
+   */
+  _reset() {
+    this._dispose();
+    this._index = 1;
+    this._generatorValue = null;
+    this._generatorState = GENERATOR_STATE_BEFORE_CREATE;
+    if (this.iterator) { this.iterator.return("cancelled"); }
+    this.iterator = this._makeIterator();
+  },
+
+  _retry() {
+    this._reset();
+    this._retryPolicy.retry(this);
+    let cancelRetry = () => this._retryPolicy.cancel(this);
+    this._addDisposer(cancelRetry);
+  },
+
   _isGeneratorDone() {
     let state = this._generatorState;
     return state === GENERATOR_STATE_DONE || state === GENERATOR_STATE_ERRORED;
@@ -581,7 +624,11 @@ let taskInstanceAttrs = {
     }
 
     if (this._generatorState === GENERATOR_STATE_ERRORED) {
-      this._finalize(this._generatorValue, COMPLETION_ERROR);
+      if (this._retryPolicy.shouldRetry(this, this._generatorValue)) {
+        this._retry();
+      } else {
+        this._finalize(this._generatorValue, COMPLETION_ERROR);
+      }
       return;
     }
 
