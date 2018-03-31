@@ -286,4 +286,74 @@ module('Unit: task states', function() {
       assert.equal(myTask.get('lastIncomplete'), taskInstance2);
     }
   });
+
+  ['lastComplete', 'lastSuccessful'].forEach((type) => {
+    test(`.${type} is set deterministically based on when it was performed`, function(assert) {
+      assert.expect(4);
+
+      let defer1, defer2, taskInstance2;
+      let Obj = EmberObject.extend({
+        myTask: task(function * (deferable) {
+          return yield deferable.promise;
+        }),
+      });
+
+      let obj, myTask;
+      run(() => {
+        obj = Obj.create();
+        myTask = obj.get('myTask');
+        assert.equal(myTask.get(type), null);
+        defer1 = RSVP.defer();
+        defer2 = RSVP.defer();
+        myTask.perform(defer1);
+        taskInstance2 = myTask.perform(defer2);
+      });
+
+      assert.equal(myTask.get(type), null);
+      run(defer2, 'resolve');
+      assert.equal(myTask.get(type), taskInstance2);
+      run(defer1, 'resolve');
+      assert.equal(myTask.get(type), taskInstance2);
+    });
+  });
+
+  ['lastErrored', 'lastIncomplete'].forEach((type) => {
+    test(`.${type} is set deterministically based on when it was performed`, function(assert) {
+      assert.expect(4);
+
+      let defer1, defer2, taskInstance2;
+      let Obj = EmberObject.extend({
+        myTask: task(function * (deferable) {
+          return yield deferable.promise;
+        }),
+      });
+
+      let obj, myTask;
+      run(() => {
+        obj = Obj.create();
+        myTask = obj.get('myTask');
+        assert.equal(myTask.get(type), null);
+        defer1 = RSVP.defer();
+        defer2 = RSVP.defer();
+        myTask.perform(defer1);
+        taskInstance2 = myTask.perform(defer2);
+      });
+
+      assert.equal(myTask.get(type), null);
+
+      try {
+        run(defer2, 'reject', 'i am error');
+        assert.ok(false);
+      } catch(e) {
+        assert.equal(myTask.get(type), taskInstance2);
+      }
+
+      try {
+        run(defer1, 'reject', 'i am error');
+        assert.ok(false);
+      } catch(e) {
+        assert.equal(myTask.get(type), taskInstance2);
+      }
+    });
+  });
 });

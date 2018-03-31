@@ -15,10 +15,10 @@ import {
 
 const TASK_CANCELATION_NAME = 'TaskCancelation';
 
-const COMPLETION_PENDING = 0;
-const COMPLETION_SUCCESS = 1;
-const COMPLETION_ERROR = 2;
-const COMPLETION_CANCEL = 3;
+export const COMPLETION_PENDING = 0;
+export const COMPLETION_SUCCESS = 1;
+export const COMPLETION_ERROR = 2;
+export const COMPLETION_CANCEL = 3;
 
 const GENERATOR_STATE_BEFORE_CREATE = "BEFORE_CREATE";
 const GENERATOR_STATE_HAS_MORE_VALUES = "HAS_MORE_VALUES";
@@ -131,6 +131,16 @@ let taskInstanceAttrs = {
   error: null,
 
   /**
+   * When this TaskInstance is performed, this property will be set with the
+   * timestamp.
+   *
+   * @memberof TaskInstance
+   * @instance
+   * @readOnly
+   */
+  performedAt: null,
+
+  /**
    * True if the task instance is fulfilled.
    *
    * @memberof TaskInstance
@@ -239,6 +249,7 @@ let taskInstanceAttrs = {
   _start() {
     if (this.hasStarted || this.isCanceling) { return this; }
     set(this, 'hasStarted', true);
+    set(this, 'performedAt', Date.now());
     this._scheduleProceed(YIELDABLE_CONTINUE, undefined);
     return this;
   },

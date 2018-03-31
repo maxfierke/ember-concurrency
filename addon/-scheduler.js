@@ -1,5 +1,10 @@
 import { once } from '@ember/runloop';
 import EmberObject, { set, get } from '@ember/object';
+import {
+  COMPLETION_SUCCESS,
+  COMPLETION_ERROR,
+  COMPLETION_CANCEL
+} from './-task-instance';
 
 let SEEN_INDEX = 0;
 
@@ -98,22 +103,33 @@ const Scheduler = EmberObject.extend({
 
     taskInstance._start()._onFinalize(() => {
       task.decrementProperty('numRunning');
-      var state = taskInstance._completionState;
-      set(this, 'lastComplete', taskInstance);
-      if (state === 1) {
-        set(this, 'lastSuccessful', taskInstance);
+      let state = taskInstance._completionState;
+      setLastState(this, 'lastComplete', taskInstance);
+      if (state === COMPLETION_SUCCESS) {
+        setLastState(this, 'lastSuccessful', taskInstance);
       } else {
-        if (state === 2) {
-          set(this, 'lastErrored', taskInstance);
-        } else if (state === 3) {
-          set(this, 'lastCanceled', taskInstance);
+        if (state === COMPLETION_ERROR) {
+          setLastState(this, 'lastErrored', taskInstance);
+        } else if (state === COMPLETION_CANCEL) {
+          setLastState(this, 'lastCanceled', taskInstance);
         }
-        set(this, 'lastIncomplete', taskInstance);
+        setLastState(this, 'lastIncomplete', taskInstance);
       }
       once(this, this._flushQueues);
     });
   }
 });
+
+function setLastState(scheduler, type, taskInstance) {
+  let lastOfState = get(scheduler, type);
+  let lastPerformedAt = lastOfState && get(lastOfState, 'performedAt');
+  let currentPerformedAt = get(taskInstance, 'performedAt');
+
+  if (!lastOfState || lastPerformedAt < currentPerformedAt) {
+
+    set(scheduler, type, taskInstance);
+  }
+}
 
 function flushTaskCounts(tasks) {
   SEEN_INDEX++;
