@@ -27,6 +27,7 @@ import {
 } from './utils';
 import EncapsulatedTask from './-encapsulated-task';
 
+const { WeakMap } = Ember;
 const PerformProxy = EmberObject.extend({
   _task: null,
   _performType: null,
@@ -417,7 +418,7 @@ export function TaskProperty(taskFn) {
   let tp = this;
   _ComputedProperty.call(this, function(_propertyName) {
     taskFn.displayName = `${_propertyName} (task)`;
-    return Task.create({
+    let task = Task.create({
       fn: tp.taskFn,
       context: this,
       _origin: this,
@@ -427,12 +428,17 @@ export function TaskProperty(taskFn) {
       _debug: tp._debug,
       _hasEnabledEvents: tp._hasEnabledEvents
     });
+
+    tp._tasks.set(this, task);
+
+    return task;
   });
 
   this.taskFn = taskFn;
   this.eventNames = null;
   this.cancelEventNames = null;
   this._observes = null;
+  this._tasks = new WeakMap();
 }
 
 TaskProperty.prototype = Object.create(_ComputedProperty.prototype);
@@ -609,6 +615,10 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
   perform() {
     throw new Error("It looks like you tried to perform a task via `this.nameOfTask.perform()`, which isn't supported. Use `this.get('nameOfTask').perform()` instead.");
   },
+
+  getTask(target) {
+    return this._tasks.get(target);
+  }
 });
 
 function registerOnPrototype(addListenerOrObserver, proto, names, taskName, taskMethod, once) {
