@@ -34,7 +34,7 @@
 
 {{! BEGIN-SNIPPET task-groups-template }}
 {{#each tasks as |task|}}
-  <button class={{if task.isIdle 'clickable'}}
+  <button class="button {{if task.isIdle 'clickable'}}"
           onclick={{perform task}}>{{task.name}}</button>
 {{/each}}
 

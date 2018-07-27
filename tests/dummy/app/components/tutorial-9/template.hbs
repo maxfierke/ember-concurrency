@@ -1,7 +1,7 @@
 <div class="tutorial-example">
 
 {{! BEGIN-SNIPPET better-syntax-10 }}
-  <button onclick={{perform findStores}}>
+  <button class="button" onclick={{perform findStores}}>
     Find Nearby Stores
     {{#if findStores.isRunning}}
       {{loading-spinner}}

@@ -11,10 +11,11 @@ For reference, here is the bare minimum implementation that we
 started with before (which only uses core Ember APIs):
 </p>
 
-{{code-template-toggle
-    codeSnippet="better-syntax-1.js"
-    templateSnippet="better-syntax-1.hbs"}}
-{{tutorial-0}}
+{{#code-template-toggle codeSnippet="better-syntax-1.js" templateSnippet="better-syntax-1.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-1-example.hbs'}}
+    {{tutorial-0}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <h4>Version 1: Bare Minimum Implementation (with Tasks)</h4>
 
@@ -22,10 +23,11 @@ started with before (which only uses core Ember APIs):
 Now let's build the same thing with ember-concurrency tasks:
 </p>
 
-{{code-template-toggle
-    codeSnippet="better-syntax-7.js"
-    templateSnippet="better-syntax-7.hbs"}}
-{{tutorial-6}}
+{{#code-template-toggle codeSnippet="better-syntax-7.js" templateSnippet="better-syntax-7.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-7-example.hbs'}}
+    {{tutorial-6}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 Let's take a moment to point out everything that has changed:
@@ -66,11 +68,11 @@ exposed by the task to drive our loading spinner, which means we only
 need to make a change to the template code; the JavaScript can stay the same:
 </p>
 
-{{code-template-toggle
-    codeSnippet="better-syntax-8.js"
-    templateSnippet="better-syntax-8.hbs"
-    showCode=false}}
-{{tutorial-7}}
+{{#code-template-toggle codeSnippet="better-syntax-8.js" templateSnippet="better-syntax-8.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-8-example.hbs'}}
+    {{tutorial-7}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <h4>Version 3: Preventing Concurrency (with Tasks)</h4>
 
@@ -89,10 +91,11 @@ concurrency by "dropping" any attempt to perform the task while it is
 already running.
 </p>
 
-{{code-template-toggle
-    codeSnippet="better-syntax-9.js"
-    templateSnippet="better-syntax-9.hbs"}}
-{{tutorial-8}}
+{{#code-template-toggle codeSnippet="better-syntax-9.js" templateSnippet="better-syntax-9.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-9-example.hbs'}}
+    {{tutorial-8}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 Now when you button mash "Find Nearby Stores", you no longer get the weird

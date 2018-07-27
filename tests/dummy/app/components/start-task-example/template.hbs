@@ -1,14 +1,14 @@
 <p>
 {{! BEGIN-SNIPPET start-task-example-template }}
-  <button {{action 'performTask' "one"}}>
+  <button class="button" {{action 'performTask' "one"}}>
     1. task.perform(...)
   </button>
 
-  <button onclick={{perform myTask "two"}}>
+  <button class="button" onclick={{perform myTask "two"}}>
     2. (perform taskName)
   </button>
 
-  <button {{action "triggerFoo" "three"}}>
+  <button class="button" {{action "triggerFoo" "three"}}>
     3. .on('foo')
   </button>
 

@@ -61,11 +61,11 @@
 </p>
 
 {{! BEGIN-SNIPPET error-vs-cancelation-template }}
-<button onclick={{perform myTask false}}>
+<button class="button" onclick={{perform myTask false}}>
   Run to Completion
 </button>
 
-<button onclick={{perform myTask true}}>
+<button class="button" onclick={{perform myTask true}}>
   Throw an Error
 </button>
 

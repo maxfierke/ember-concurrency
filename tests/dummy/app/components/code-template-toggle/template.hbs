@@ -1,9 +1,5 @@
-<div class="code-template-toggle-section {{if showCode 'hidden'}}">
-  {{code-snippet name=templateSnippet}}
-</div>
-<div class="code-template-toggle-section {{if showCode '' 'hidden'}}">
-  {{code-snippet name=codeSnippet}}
-</div>
-<span class="button code-template-toggle-button" onclick={{action 'toggle'}}>
-  {{toggleDescription}}
-</span>
+{{#docs.demo as |demo|}}
+  {{yield demo}}
+  {{demo.snippet templateSnippet label='template.hbs'}}
+  {{demo.snippet codeSnippet label='component.js'}}
+{{/docs.demo}}

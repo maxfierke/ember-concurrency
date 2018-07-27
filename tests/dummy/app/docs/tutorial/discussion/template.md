@@ -17,7 +17,7 @@ This is not the beautiful Ember code we all thought we'd be writing,
 and unfortunately this kind of code is extremely commonplace.
 </p>
 
-<h5>Alternative: Move tricky code to an object with a long lifespan</h5>
+<h4>Alternative: Move tricky code to an object with a long lifespan</h4>
 
 <p>
 Components have limited lifespans: they're rendered, and then

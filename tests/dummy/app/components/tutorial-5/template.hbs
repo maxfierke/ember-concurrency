@@ -1,7 +1,7 @@
 <div class="tutorial-example">
 
-{{! BEGIN-SNIPPET better-syntax-6 }}
-  <button onclick={{action 'findStores'}}>
+{{! BEGIN-SNIPPET better-syntax-6.hbs }}
+  <button class="button" onclick={{action 'findStores'}}>
     Find Nearby Stores
     {{#if isFindingStores}}
       {{loading-spinner}}

@@ -1,6 +1,6 @@
 import TutorialComponent from '../shared-tutorial/component';
 
-// BEGIN-SNIPPET better-syntax-1
+// BEGIN-SNIPPET better-syntax-1.js
 export default TutorialComponent.extend({
   result: null,
   actions: {
@@ -17,5 +17,3 @@ export default TutorialComponent.extend({
   },
 });
 // END-SNIPPET
-
-

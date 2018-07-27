@@ -1,6 +1,6 @@
 import TutorialComponent from '../shared-tutorial/component';
 
-// BEGIN-SNIPPET better-syntax-3
+// BEGIN-SNIPPET better-syntax-3.js
 export default TutorialComponent.extend({
   result: null,
   isFindingStores: false,

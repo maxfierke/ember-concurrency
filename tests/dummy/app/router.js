@@ -1,13 +1,14 @@
-import EmberRouter from '@ember/routing/router';
+import AddonDocsRouter, { docsRoute, apiRoute } from 'ember-cli-addon-docs/router';
 import config from './config/environment';
 
-const Router = EmberRouter.extend({
+const Router = AddonDocsRouter.extend({
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.rootURL,
 });
 
 Router.map(function() {
-  this.route('docs', function() {
+  apiRoute(this);
+  docsRoute(this, function() {
     this.route('introduction');
     this.route('installation');
     this.route('writing-tasks');
@@ -48,6 +49,7 @@ Router.map(function() {
     this.route('task-cancelation-help');
     this.route('404', { path: '*path' });
   });
+
   this.route('experimental-prediction');
   this.route('helpers-test');
   this.route('deprecation-test');

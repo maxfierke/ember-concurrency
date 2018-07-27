@@ -37,12 +37,12 @@
 {{! BEGIN-SNIPPET cancelation-template }}
 <h5>Running tasks: {{count}}</h5>
 
-<button {{action 'performTask'}}>Perform Task</button>
+<button class="button" {{action 'performTask'}}>Perform Task</button>
 {{#if count}}
-  <button {{action 'cancelAll'}}>Cancel All</button>
+  <button class="button" {{action 'cancelAll'}}>Cancel All</button>
 {{/if}}
 {{#if mostRecent.isRunning}}
-  <button {{action 'cancelMostRecent'}}>Cancel Most Recent</button>
+  <button class="button" {{action 'cancelMostRecent'}}>Cancel Most Recent</button>
 {{/if}}
 {{! END-SNIPPET }}
 

@@ -1,42 +1,28 @@
-<div class="container">
-  <div class="docs row">
-    <div class="three columns">
-      <div class="side-menu">
-        {{#each tableOfContents as |entry|}}
-          {{#if entry.section}}
-            <div class="toc-section-title">
-              {{entry.section}}
-            </div>
-          {{else}}
-            <div class="toc-entry">
-              {{#if entry.route}}
-                {{#link-to entry.route}}{{entry.title}}{{/link-to}}
-              {{else}}
-                {{entry.title}}
-              {{/if}}
-            </div>
+{{#docs-viewer as |viewer|}}
+  {{#viewer.nav as |nav|}}
+    {{#each tableOfContents as |entry|}}
+      {{#if entry.section}}
+        {{nav.section entry.section}}
+      {{else}}
+        {{nav.item entry.title entry.route}}
 
+        {{#if entry.children}}
+          {{#nav.subnav as |subnav|}}
+            {{#each entry.children as |child|}}
+              {{subnav.item child.title child.route}}
+            {{/each}}
+          {{/nav.subnav}}
+        {{/if}}
+      {{/if}}
+    {{/each}}
+  {{/viewer.nav}}
 
-            {{#if entry.children}}
-              {{#each entry.children as |child|}}
-                <div class="toc-entry toc-subentry">
-                  {{#link-to child.route}}{{child.title}}{{/link-to}}
-                  </div>
-              {{/each}}
-            {{/if}}
-          {{/if}}
-        {{/each}}
+  {{#viewer.main}}
+    <div class="docs-container">
+      <div class="docs-section">
+        {{github-edit}}
+        {{outlet}}
       </div>
     </div>
-    <div class="nine columns">
-      {{nav-header nextTopic=nextTopic prevTopic=prevTopic}}
-      {{github-edit}}
-
-      {{outlet}}
-
-      <br> <br> <br> <br> 
-
-      {{nav-header nextTopic=nextTopic prevTopic=prevTopic}}
-    </div>
-  </div>
-</div>
+  {{/viewer.main}}
+{{/docs-viewer}}
