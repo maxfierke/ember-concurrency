@@ -1,6 +1,6 @@
-<h3>Writing Your First Task</h3>
+<h2>Writing Your First Task</h2>
 
-<h4>Step 1: Deciding where the Task will live</h4>
+<h3>Step 1: Deciding where the Task will live</h3>
 
 <p>
   Should you define a task on a Component? Or perhaps a Service?
@@ -14,7 +14,7 @@
   it probably belongs on a Service or Controller.
 </p>
 
-<h4>Step 2: Implementing the task</h4>
+<h3>Step 2: Implementing the task</h3>
 
 <p>
   Once you've decided where you want a task to live, you can start implementing
@@ -29,7 +29,7 @@
   to write tasks.
 </p>
 
-<h4>Step 3: Performing the task</h4>
+<h3>Step 3: Performing the task</h3>
 
 <p>
   Now that you've implemented your Task, you'll need some way to actually
@@ -55,7 +55,7 @@
   The following example demonstrates all three variants:
 </p>
 
-<h3>Live Example</h3>
+<h2>Live Example</h2>
 
 {{start-task-example}}
 

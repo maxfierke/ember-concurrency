@@ -1,4 +1,4 @@
-<h3>Derived State</h3>
+<h2>Derived State</h2>
 
 <p>
   One of the core goals of ember-concurrency is to provide as much
@@ -23,7 +23,7 @@
   mind that there are <a href="/api">API docs</a> for everything described below.
 </p>
 
-<h4>Properties on <a href="/api/Task.html">Task</a> objects</h4>
+<h3>Properties on <a href="/api/Task.html">Task</a> objects</h3>
 
 <ul>
   <li>
@@ -49,7 +49,7 @@
   </li>
 </ul>
 
-<h5>Accessing Task Instances from the Task object</h5>
+<h4>Accessing Task Instances from the Task object</h4>
 
 <p>
   Tasks also expose properties for accessing specific
@@ -77,7 +77,7 @@
   ember-concurrency's API).
 </p>
 
-<h4>Properties on <a href="/api/TaskInstance.html">Task Instances</a></h4>
+<h3>Properties on <a href="/api/TaskInstance.html">Task Instances</a></h3>
 
 <ul>
   <li>
@@ -105,7 +105,7 @@
   </li>
 </ul>
 
-<h4>Put the two together...</h4>
+<h3>Put the two together...</h3>
 
 <p>
   Given a task named <code>myTask</code>, if you need to display a success banner
@@ -116,7 +116,7 @@
   combinations as well that might better suit your UI needs.
 </p>
 
-<h3>Live Example</h3>
+<h2>Live Example</h2>
 
 <p>
   {{input type="checkbox" checked=showLessCommon}} Show less common properties
@@ -124,7 +124,7 @@
 
 {{#each tasks as |taskName|}}
   {{#with (get this taskName) as |task|}}
-    <h5>{{task.name}} (performCount={{task.performCount}} concurrency={{task.concurrency}})</h5>
+    <h4>{{task.name}} (performCount={{task.performCount}} concurrency={{task.concurrency}})</h4>
 
     <p>
       <button class="button" onclick={{perform task false}}

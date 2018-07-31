@@ -1,4 +1,4 @@
-<h3>Refactoring With Tasks</h3>
+<h2>Refactoring With Tasks</h2>
 
 <p>
 Now we're going to build the same functionality using
@@ -17,7 +17,7 @@ started with before (which only uses core Ember APIs):
   {{/demo.example}}
 {{/code-template-toggle}}
 
-<h4>Version 1: Bare Minimum Implementation (with Tasks)</h4>
+<h3>Version 1: Bare Minimum Implementation (with Tasks)</h3>
 
 <p>
 Now let's build the same thing with ember-concurrency tasks:
@@ -59,7 +59,7 @@ Let's take a moment to point out everything that has changed:
 
 <p>Let's press onward with the refactor:</p>
 
-<h5>Version 2: Add a Loading Spinner (with Tasks)</h5>
+<h4>Version 2: Add a Loading Spinner (with Tasks)</h4>
 
 <p>
 Rather than defining a separate boolean flag and manually tracking
@@ -74,7 +74,7 @@ need to make a change to the template code; the JavaScript can stay the same:
   {{/demo.example}}
 {{/code-template-toggle}}
 
-<h4>Version 3: Preventing Concurrency (with Tasks)</h4>
+<h3>Version 3: Preventing Concurrency (with Tasks)</h3>
 
 <p>
 So far so good, but we still haven't addressed the issue that clicking
@@ -102,7 +102,7 @@ Now when you button mash "Find Nearby Stores", you no longer get the weird
 behavior due to concurrent fetches.
 </p>
 
-<h4>Version 4: Handling "set on destroyed object" errors (with Tasks)</h4>
+<h3>Version 4: Handling "set on destroyed object" errors (with Tasks)</h3>
 
 <p>
 What about those pesky <code>"set on destroyed object"</code> errors?
@@ -124,7 +124,7 @@ most powerful features, and it is the generator function syntax that
 makes cancelation possible.
 </p>
 
-<h4>Version 5: Handle Promise Rejection (with Tasks)</h4>
+<h3>Version 5: Handle Promise Rejection (with Tasks)</h3>
 
 <p>
 Will a promise rejection put our task into an unrecoverable state?
@@ -138,25 +138,23 @@ the exception to the console (so that error reporters can catch it), but from th
 the task can be immediately performed / retried again. So, we don't need to change any code.
 </p>
 
-<h3>Final Diff</h3>
+<h2>Final Diff</h2>
 
-<br>
-
-<h5>JavaScript:</h5>
+<h4>JavaScript:</h4>
 
 {{#docs-demo as |demo|}}
   {{demo.snippet "better-syntax-6.js" label='Before'}}
   {{demo.snippet "better-syntax-10.js" label='After'}}
 {{/docs-demo}}
 
-<h5>Template:</h5>
+<h4>Template:</h4>
 
 {{#docs-demo as |demo|}}
   {{demo.snippet "better-syntax-6.hbs" label='Before'}}
   {{demo.snippet "better-syntax-10.hbs" label='After'}}
 {{/docs-demo}}
 
-<h3>Conclusion</h3>
+<h2>Conclusion</h2>
 
 <p>
 This was a very successful refactor. We were able to remove a lot

@@ -1,4 +1,4 @@
-<h3>Task Function Syntax</h3>
+<h2>Task Function Syntax</h2>
 
 <p>
   When a task is performed, it runs the code in the task function
@@ -18,7 +18,7 @@
 
 {{docs-snippet name="task-function-syntax-2.js"}}
 
-<h4>Using the <code>yield</code> keyword</h4>
+<h3>Using the <code>yield</code> keyword</h3>
 
 <p>
   Much of the power of Tasks is unleashed once you start making

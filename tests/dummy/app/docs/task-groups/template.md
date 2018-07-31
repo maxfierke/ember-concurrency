@@ -1,4 +1,4 @@
-<h3>Task Groups</h3>
+<h2>Task Groups</h2>
 
 <p>
   While {{link-to 'Task Modifiers' 'docs.task-concurrency'}}
@@ -20,7 +20,7 @@
   as demonstrated in the example below.
 </p>
 
-<h4>Example</h4>
+<h3>Example</h3>
 
 <p>
   In this example, we group related "chores" tasks and by using the <code>.drop()</code>
@@ -38,14 +38,14 @@
           onclick={{perform task}}>{{task.name}}</button>
 {{/each}}
 
-<h5>Chores group state: {{chores.state}}</h5>
+<h4>Chores group state: {{chores.state}}</h4>
 
-<h5>
+<h4>
   Most Recent Chore:
   {{#with chores.last as |taskInstance|}}
     {{taskInstance.task.name}} ({{taskInstance.state}})
   {{/with}}
-</h5>
+</h4>
 {{! END-SNIPPET }}
 
 {{docs-snippet name="task-groups.js"}}

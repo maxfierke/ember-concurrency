@@ -1,4 +1,4 @@
-<h3>Using <code>.maxConcurrency(N)</code></h3>
+<h2>Using <code>.maxConcurrency(N)</code></h2>
 
 <p>
   The examples on the previous page limit the concurrency of a task to 1 &mdash; only
@@ -23,7 +23,7 @@
 
 {{docs-snippet name="shared-tasks-concurrent.js"}}
 
-<h4>restartable with .maxConcurrency(3)</h4>
+<h3>restartable with .maxConcurrency(3)</h3>
 
 <p>
   When concurrency exceeds maxConcurrency, the oldest running task is canceled.
@@ -40,15 +40,15 @@
 </p>
 
 
-<h4>enqueue with .maxConcurrency(3)</h4>
+<h3>enqueue with .maxConcurrency(3)</h3>
 
 {{concurrency-graph task=enqueuedTask3}}
 
-<h4>drop with .maxConcurrency(3)</h4>
+<h3>drop with .maxConcurrency(3)</h3>
 
 {{concurrency-graph task=droppingTask3}}
 
-<h4>.keepLatest() with .maxConcurrency(3)</h4>
+<h3>.keepLatest() with .maxConcurrency(3)</h3>
 
 {{concurrency-graph task=keepLatestTask3}}
 

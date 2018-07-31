@@ -1,4 +1,4 @@
-<h3>Testing</h3>
+<h2>Testing</h2>
 
 <p>
   Ember doesn't yet have strong conventions for testing
@@ -19,7 +19,7 @@
   </em>
 </p>
 
-<h4>The Problem</h4>
+<h3>The Problem</h3>
 
 <p>
   Consider the following (common) pattern for polling a server for changes:
@@ -56,7 +56,7 @@
   Here are all the ways to do that, each with their own problems / tradeoffs:
 </p>
 
-<h5>Insert <code>Ember.testing</code> checks in your code</h5>
+<h4>Insert <code>Ember.testing</code> checks in your code</h4>
 
 {{docs-snippet name="poll-loop-break-1.js"}}
 
@@ -67,7 +67,7 @@
   code with testing logic.
 </p>
 
-<h5>Use <code>Ember.run.cancelTimers</code> in your test case</h5>
+<h4>Use <code>Ember.run.cancelTimers</code> in your test case</h4>
 
 <p>
   This is the approach used by the ember-concurrency
@@ -78,7 +78,7 @@
   stop all tasks wherever they're paused.
 </p>
 
-<h4>No loops, but long timers</h4>
+<h3>No loops, but long timers</h3>
 
 <p>
   If you're testing code that just uses long timers, but not necessarily loops,
@@ -91,7 +91,7 @@
   file specifies much smaller values so that the timers elapse more quickly.
 </p>
 
-<h4>The Future</h4>
+<h3>The Future</h3>
 
 <p>
   The above solutions leave much to be desired. Hopefully a definitive solution
@@ -108,7 +108,7 @@
 </p>
 
 
-<h3>Debugging</h3>
+<h2>Debugging</h2>
 
 <p>
   <a href="http://vanderwijk.info/blog/how-disable-es6-transpilation-emberjs-in-order-have-better-debugging-experience/">This article</a>
@@ -121,7 +121,7 @@
   functions (Chrome's implementation only became spec-compliant around June, 2016).
 </p>
 
-<h4>Unexpected Cancelation</h4>
+<h3>Unexpected Cancelation</h3>
 
 <p>
   Sometimes it's not obvious why a Task was canceled; in these cases you

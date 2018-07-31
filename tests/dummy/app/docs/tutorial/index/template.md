@@ -1,4 +1,4 @@
-<h3>Introduction to ember-concurrency</h3>
+<h2>Introduction to ember-concurrency</h2>
 
 <p>
 To demonstrate the kinds of problems ember-concurrency
@@ -36,7 +36,7 @@ take a look if you prefer a video alternative to this tutorial.
 </em>
 </p>
 
-<h4>Version 1: Bare Minimum Implementation</h4>
+<h3>Version 1: Bare Minimum Implementation</h3>
 
 <p>
 We'll start off a bare-bones implementation of the feature: within
@@ -62,7 +62,7 @@ The most immediate problem is that there's no loading UI; the user clicks
 the button and it seems like nothing is happening until the results come back.
 </p>
 
-<h4>Version 2: Add a Loading Spinner</h4>
+<h3>Version 2: Add a Loading Spinner</h3>
 
 <p>
 We'd like to display a loading spinner while the code is fetching nearby stores.
@@ -93,7 +93,7 @@ nearby locations, when really we just want only one fetch to be running
 at any given time.
 </p>
 
-<h4>Version 3: Preventing Concurrency</h4>
+<h3>Version 3: Preventing Concurrency</h3>
 
 <p>
 We'd like to prevent another fetch from happening if one is already in
@@ -129,7 +129,7 @@ above, and then quickly clicking {{link-to 'this link' 'docs.introduction'}}
 before the store results have come back.
 </p>
 
-<h4>Version 4: Handling "set on destroyed object" errors</h4>
+<h3>Version 4: Handling "set on destroyed object" errors</h3>
 
 <p>
 The problem is that it's possible for our promise callback (the
@@ -163,7 +163,7 @@ that pesky error.
 Now, are we done?
 </p>
 
-<h4>Version 5: Handle Promise Rejection</h4>
+<h3>Version 5: Handle Promise Rejection</h3>
 
 <p>
 You might have noticed that we don't have any error handling if

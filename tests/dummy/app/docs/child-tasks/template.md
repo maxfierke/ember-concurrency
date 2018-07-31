@@ -1,4 +1,4 @@
-<h3>Child Tasks</h3>
+<h2>Child Tasks</h2>
 
 <p>
   Tasks can call other tasks by <code>yield</code>ing the
@@ -8,10 +8,10 @@
   automatically be canceled as well.
 </p>
 
-<h4>Example</h4>
+<h3>Example</h3>
 
 {{! BEGIN-SNIPPET child-tasks-template.hbs }}
-<h5>{{status}}</h5>
+<h4>{{status}}</h4>
 
 <ul>
   <li>Parent Task:     {{parentTask.state}}</li>

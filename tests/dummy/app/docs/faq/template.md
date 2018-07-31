@@ -1,12 +1,12 @@
 <h2>FAQ &amp; Fact Sheet</h2>
 
-<h4>Why am I seeing TaskCancelation errors in my logs?</h4>
+<h3>Why am I seeing TaskCancelation errors in my logs?</h3>
 
 <p>
 See {{link-to 'this link' 'docs.task-cancelation-help'}}.
 </p>
 
-<h4>Does ember-concurrency work with older browsers?</h4>
+<h3>Does ember-concurrency work with older browsers?</h3>
 
 <p>
   Yes. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">ES6 Generator Function syntax</a>
@@ -15,9 +15,9 @@ See {{link-to 'this link' 'docs.task-cancelation-help'}}.
   it'll work on all browsers supported by Ember.
 </p>
 
-<h4>How do ember-concurrency Tasks compare to...</h4>
+<h3>How do ember-concurrency Tasks compare to...</h3>
 
-<h5>Promises?</h5>
+<h4>Promises?</h4>
 
 <p>
   Promises aren't cancelable, and as of 12/2016, there is no active TC39 specification
@@ -53,7 +53,7 @@ See {{link-to 'this link' 'docs.task-cancelation-help'}}.
   </li>
 </ul>
 
-<h5>Observables?</h5>
+<h4>Observables?</h4>
 
 
 <ul>

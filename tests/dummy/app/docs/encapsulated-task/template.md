@@ -1,4 +1,4 @@
-<h3>Encapsulated Tasks</h3>
+<h2>Encapsulated Tasks</h2>
 
 <p>
   Normally, you define tasks by passing a generator function to <code>task(...)</code>.
@@ -31,7 +31,7 @@
 
 {{docs-snippet name="encapsulated-task.js"}}
 
-<h3>Live Example</h3>
+<h2>Live Example</h2>
 
 <p>
   This example demonstrates how to use encapsulated tasks to
@@ -47,22 +47,22 @@
   </button>
 </p>
 
-<h5>Queued Uploads: {{uploadFile.numQueued}}</h5>
+<h4>Queued Uploads: {{uploadFile.numQueued}}</h4>
 
 {{#with uploadFile.last as |encapsTask|}}
-  <h5>
+  <h4>
     Uploading to {{encapsTask.url}} ({{encapsTask.stateText}}):
     {{encapsTask.progress}}%
-  </h5>
+  </h4>
 {{/with}}
 
 {{#if uploadFile.lastSuccessful}}
-  <h5 style="color: green;">
+  <h4 style="color: green;">
     <strong>
     Upload to {{uploadFile.lastSuccessful.url}}:
     {{uploadFile.lastSuccessful.value}}
     </strong>
-  </h5>
+  </h4>
 {{/if}}
 
 {{! END-SNIPPET }}

@@ -1,4 +1,4 @@
-<h3>Cancelation</h3>
+<h2>Cancelation</h2>
 
 <p>
   <strong>ember-concurrency</strong> tasks can be canceled either
@@ -16,7 +16,7 @@
   explicit cancelation is the only option.
 </p>
 
-<h4>Explicit Cancelation</h4>
+<h3>Explicit Cancelation</h3>
 
 <p>
   There are two ways to explicitly cancel a task:
@@ -32,10 +32,10 @@
   </li>
 </ol>
 
-<h4>Example</h4>
+<h3>Example</h3>
 
 {{! BEGIN-SNIPPET cancelation-template.hbs }}
-<h5>Running tasks: {{count}}</h5>
+<h4>Running tasks: {{count}}</h4>
 
 <button class="button" {{action 'performTask'}}>Perform Task</button>
 {{#if count}}

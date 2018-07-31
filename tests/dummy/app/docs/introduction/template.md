@@ -37,7 +37,7 @@
   </li>
 </ul>
 
-<h3>Additional Learning Resources</h3>
+<h2>Additional Learning Resources</h2>
 
 <p>
   In addition to the comprehesive documentation on this site,

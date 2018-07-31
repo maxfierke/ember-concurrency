@@ -1,4 +1,4 @@
-<h3>Installation</h3>
+<h2>Installation</h2>
 
 <p>
   Within your ember-cli project folder, run the following:

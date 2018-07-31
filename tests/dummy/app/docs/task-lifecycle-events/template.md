@@ -1,4 +1,4 @@
-<h3>Task lifecycle events</h3>
+<h2>Task lifecycle events</h2>
 
 <p>
   ember-concurrency implements a number of lifecycle events that allow
@@ -16,7 +16,7 @@
   of doing it manually in the looping task itself.
 </p>
 
-<h3>Live Example</h3>
+<h2>Live Example</h2>
 
 {{task-lifecycle-events-example}}
 

@@ -1,4 +1,4 @@
-<h3>A Quick Post-Mortem</h3>
+<h2>A Quick Post-Mortem</h2>
 
 <p>
 In the previous part of the tutorial, we built a component that
@@ -20,7 +20,7 @@ This is not the beautiful Ember code we all thought we'd be writing,
 and unfortunately this kind of code is extremely commonplace.
 </p>
 
-<h4>Alternative: Move tricky code to an object with a long lifespan</h4>
+<h3>Alternative: Move tricky code to an object with a long lifespan</h3>
 
 <p>
 Components have limited lifespans: they're rendered, and then

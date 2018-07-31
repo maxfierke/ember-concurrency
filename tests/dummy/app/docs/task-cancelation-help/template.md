@@ -1,4 +1,4 @@
-<h3>Why am I seeing TaskCancelation errors in my logs?</h3>
+<h2>Why am I seeing TaskCancelation errors in my logs?</h2>
 
 <p>
 If you're seeing <code style="color:red;">TaskCancelation</code> errors show

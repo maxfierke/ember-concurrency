@@ -1,4 +1,4 @@
-<h3>Errors vs Cancelation</h3>
+<h2>Errors vs Cancelation</h2>
 
 <p>
   When you <code>yield</code> a promise,
@@ -50,7 +50,7 @@
   </em>
 </p>
 
-<h4>Example</h4>
+<h3>Example</h3>
 
 <p>
   Both of the buttons below will (re)start <code>myTask</code> when clicked.

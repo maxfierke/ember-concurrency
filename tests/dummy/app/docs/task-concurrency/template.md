@@ -1,4 +1,4 @@
-<h3>Managing Task Concurrency</h3>
+<h2>Managing Task Concurrency</h2>
 
 <p>
   By default, <strong>ember-concurrency</strong> tasks run concurrently
@@ -19,7 +19,7 @@
   modifiers described below.
 </p>
 
-<h3>Examples</h3>
+<h2>Examples</h2>
 
 <p>
   All of the examples below run the same task function (which
@@ -29,7 +29,7 @@
 
 {{docs-snippet name="shared-tasks.js"}}
 
-<h5>Default Behavior: Tasks Run Concurrently</h5>
+<h4>Default Behavior: Tasks Run Concurrently</h4>
 
 <p>
   Tap the <code>task.perform()</code> button a few times. Note how
@@ -39,7 +39,7 @@
 {{concurrency-graph task=defaultTask}}
 
 
-<h4>restartable</h4>
+<h3>restartable</h3>
 
 <p>
   The <code>restartable</code> modifier ensures that only one instance
@@ -59,7 +59,7 @@
 
 {{concurrency-graph task=restartableTask}}
 
-<h4>enqueue</h4>
+<h3>enqueue</h3>
 
 <p>
   The <code>enqueue</code> modifier ensures that only one instance
@@ -71,7 +71,7 @@
 {{concurrency-graph task=enqueuedTask}}
 
 
-<h4>drop</h4>
+<h3>drop</h3>
 
 <p>
   The <code>drop</code> modifier drops tasks that are <code>.perform</code>ed
@@ -88,7 +88,7 @@
 {{concurrency-graph task=droppingTask}}
 
 
-<h4>.keepLatest()</h4>
+<h3>.keepLatest()</h3>
 
 <p>
   The <code>.keepLatest()</code> will drop all but the most recent intermediate <code>.perform()</code>,
