@@ -2,7 +2,7 @@ import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET decorating-tasks
+// BEGIN-SNIPPET decorating-tasks.js
 function taskWithCooldown(taskPath, ms) {
   return task(taskPath, function * (otherTask, ...args) {
     // perform the task...

@@ -1,4 +1,4 @@
-// BEGIN-SNIPPET start-task-example
+// BEGIN-SNIPPET start-task-example.js
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 

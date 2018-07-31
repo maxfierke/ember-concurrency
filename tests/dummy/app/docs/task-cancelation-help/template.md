@@ -18,7 +18,7 @@ promise rejection, which needs to be explicitly caught and handled
 Here is an example that demonstrates the issue:
 </p>
 
-{{code-snippet name="task-cancelation-example-1.js"}}
+{{docs-snippet name="task-cancelation-example-1.js"}}
 
 <p>
 In this example, the <code>fetchResults</code> action performs
@@ -37,7 +37,7 @@ function to check if the error was a task cancelation, and ignore it
 if so:
 </p>
 
-{{code-snippet name="task-cancelation-example-2.js"}}
+{{docs-snippet name="task-cancelation-example-2.js"}}
 
 <p>
 But this is exactly the kind of cluttered, defensive programming
@@ -51,7 +51,7 @@ you're doing using only the ember-concurrency Task API, which has
 built-in robust support for cancelation:
 </p>
 
-{{code-snippet name="task-cancelation-example-3.js"}}
+{{docs-snippet name="task-cancelation-example-3.js"}}
 
 <p>
 And in your templates, you'd replace any instance of

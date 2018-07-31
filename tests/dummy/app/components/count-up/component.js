@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
   tagName: '',
   count: 0,
-// BEGIN-SNIPPET count-up
+// BEGIN-SNIPPET count-up.js
   countUp: task(function * () {
     while (true) {
       this.incrementProperty('count');

@@ -27,7 +27,7 @@
 </p>
 
 <p>
-  {{! BEGIN-SNIPPET ask-button }}
+  {{! BEGIN-SNIPPET ask-button.hbs }}
   <button class="button {{if askQuestion.isIdle 'button-primary'}}"
     onclick={{perform askQuestion}}>
         {{#if askQuestion.isIdle}}
@@ -40,7 +40,7 @@
   {{! END-SNIPPET }}
 </p>
 
-{{code-snippet name="loading-ui-controller.js"}}
+{{docs-snippet name="loading-ui-controller.js"}}
 
-{{code-snippet name="ask-button.hbs"}}
+{{docs-snippet name="ask-button.hbs"}}
 

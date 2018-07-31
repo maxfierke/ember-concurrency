@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { task, waitForEvent, waitForProperty, timeout } from 'ember-concurrency';
 
 export default Component.extend(Evented, {
-// BEGIN-SNIPPET waitForEvent
+// BEGIN-SNIPPET waitForEvent.js
   domEvent: null,
   domEventLoop: task(function * () {
     while(true) {
@@ -33,7 +33,7 @@ export default Component.extend(Evented, {
 // END-SNIPPET
 
 
-// BEGIN-SNIPPET waitForEvent-derived-state
+// BEGIN-SNIPPET waitForEvent-derived-state.js
   waiterLoop: task(function * () {
     while(true) {
       yield this.get('waiter').perform();
@@ -47,7 +47,7 @@ export default Component.extend(Evented, {
   }),
 // END-SNIPPET
 
-// BEGIN-SNIPPET waitForProperty
+// BEGIN-SNIPPET waitForProperty.js
   startAll: task(function * () {
     this.set('bazValue', 1);
     this.set('state', "Start.");

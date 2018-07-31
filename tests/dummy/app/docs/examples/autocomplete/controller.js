@@ -3,7 +3,7 @@ import { isBlank } from '@ember/utils';
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET debounced-search-with-cancelation
+// BEGIN-SNIPPET debounced-search-with-cancelation.js
 const DEBOUNCE_MS = 250;
 export default Controller.extend({
   searchRepo: task(function * (term) {

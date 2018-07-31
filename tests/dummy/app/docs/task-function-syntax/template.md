@@ -16,7 +16,7 @@
 
 {{task-function-syntax-2}}
 
-{{code-snippet name="task-function-syntax-2.js"}}
+{{docs-snippet name="task-function-syntax-2.js"}}
 
 <h4>Using the <code>yield</code> keyword</h4>
 
@@ -38,7 +38,7 @@
 
 {{task-function-syntax-1}}
 
-{{code-snippet name="task-function-syntax-1.js"}}
+{{docs-snippet name="task-function-syntax-1.js"}}
 
 <p>
   When you <code>yield</code> a promise, the <code>yield</code> expression
@@ -50,7 +50,7 @@
 
 {{task-function-syntax-3}}
 
-{{code-snippet name="task-function-syntax-3.js"}}
+{{docs-snippet name="task-function-syntax-3.js"}}
 
 <p>
   If you <code>yield</code> a promise that rejects, the task function will
@@ -62,7 +62,7 @@
 
 {{task-function-syntax-4}}
 
-{{code-snippet name="task-function-syntax-4.js"}}
+{{docs-snippet name="task-function-syntax-4.js"}}
 
 <p>
   The behavior of yielding promises within task generator functions

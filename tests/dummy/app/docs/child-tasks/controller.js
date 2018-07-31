@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET child-tasks
+// BEGIN-SNIPPET child-tasks.js
 export default Controller.extend({
   status: "Waiting to start",
 

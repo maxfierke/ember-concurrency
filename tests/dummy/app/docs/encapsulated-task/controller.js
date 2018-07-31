@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { randomWord } from 'dummy/utils';
 
-// BEGIN-SNIPPET encapsulated-task-controller
+// BEGIN-SNIPPET encapsulated-task-controller.js
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({

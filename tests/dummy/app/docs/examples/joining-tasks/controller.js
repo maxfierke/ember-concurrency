@@ -3,7 +3,7 @@ import Controller from '@ember/controller';
 import EmberObject from '@ember/object';
 import { randomWord } from 'dummy/utils';
 
-// BEGIN-SNIPPET joining-tasks
+// BEGIN-SNIPPET joining-tasks.js
 import { task, timeout, all, race } from 'ember-concurrency';
 const methods = { all, race };
 

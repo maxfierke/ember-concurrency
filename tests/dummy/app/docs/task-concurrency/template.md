@@ -27,7 +27,7 @@
   different task modifiers applied:
 </p>
 
-{{code-snippet name="shared-tasks.js"}}
+{{docs-snippet name="shared-tasks.js"}}
 
 <h5>Default Behavior: Tasks Run Concurrently</h5>
 

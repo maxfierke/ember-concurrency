@@ -20,7 +20,7 @@ function * sharedFn(shouldError) {
 }
 
 
-// BEGIN-SNIPPET completion-state-controller
+// BEGIN-SNIPPET completion-state-controller.js
 export default Controller.extend({
   doStuff:            task(sharedFn),
   doStuffDrop:        task(sharedFn).drop(),

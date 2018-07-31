@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { defer } from 'rsvp';
 import { task } from 'ember-concurrency';
 
-// BEGIN-SNIPPET cancelation
+// BEGIN-SNIPPET cancelation.js
 const WAIT_HERE_FOREVER = defer().promise;
 export default Controller.extend({
   count: 0,

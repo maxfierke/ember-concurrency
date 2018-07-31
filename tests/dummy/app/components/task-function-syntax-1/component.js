@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
   status: null,
 
-// BEGIN-SNIPPET task-function-syntax-1
+// BEGIN-SNIPPET task-function-syntax-1.js
   waitAFewSeconds: task(function * () {
     this.set('status', "Gimme one second...");
     yield timeout(1000);

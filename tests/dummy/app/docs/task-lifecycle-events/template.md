@@ -20,5 +20,5 @@
 
 {{task-lifecycle-events-example}}
 
-{{code-snippet name="task-lifecycle-events.js"}}
+{{docs-snippet name="task-lifecycle-events.js"}}
 

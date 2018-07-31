@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET error-vs-cancelation
+// BEGIN-SNIPPET error-vs-cancelation.js
 export default Controller.extend({
   numCompletions: 0,
   numErrors: 0,

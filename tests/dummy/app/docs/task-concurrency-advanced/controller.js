@@ -11,7 +11,7 @@ function * SHARED_TASK_FN(tracker) {
   }
 }
 
-// BEGIN-SNIPPET shared-tasks-concurrent
+// BEGIN-SNIPPET shared-tasks-concurrent.js
 export default Controller.extend({
   restartableTask3: task(SHARED_TASK_FN).maxConcurrency(3).restartable(),
   enqueuedTask3:    task(SHARED_TASK_FN).maxConcurrency(3).enqueue(),

@@ -34,7 +34,7 @@
 
 <h4>Example</h4>
 
-{{! BEGIN-SNIPPET cancelation-template }}
+{{! BEGIN-SNIPPET cancelation-template.hbs }}
 <h5>Running tasks: {{count}}</h5>
 
 <button class="button" {{action 'performTask'}}>Perform Task</button>
@@ -54,6 +54,6 @@
   </em>
 </p>
 
-{{code-snippet name="cancelation-template.hbs"}}
-{{code-snippet name="cancelation.js"}}
+{{docs-snippet name="cancelation-template.hbs"}}
+{{docs-snippet name="cancelation.js"}}
 

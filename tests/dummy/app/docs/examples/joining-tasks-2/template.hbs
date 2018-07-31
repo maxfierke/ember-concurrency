@@ -9,7 +9,7 @@
 
 <h5>Status: {{status}}</h5>
 
-{{! BEGIN-SNIPPET joining-tasks-2-template }}
+{{! BEGIN-SNIPPET joining-tasks-2-template.hbs }}
 <p>
   <button class="button" onclick={{perform parent 'all'}}>all()</button>
   <button class="button" onclick={{perform parent 'race'}}>race()</button>
@@ -27,6 +27,6 @@
   </div>
 {{/each}}
 
-{{code-snippet name="joining-tasks-2.js"}}
-{{code-snippet name="joining-tasks-2-template.hbs"}}
+{{docs-snippet name="joining-tasks-2.js"}}
+{{docs-snippet name="joining-tasks-2-template.hbs"}}
 

@@ -2,7 +2,7 @@ import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import { taskGroup } from 'ember-concurrency';
 
-// BEGIN-SNIPPET task-groups
+// BEGIN-SNIPPET task-groups.js
 export default Controller.extend({
   everything:         taskGroup(),
   everythingDropped:  taskGroup().drop(),

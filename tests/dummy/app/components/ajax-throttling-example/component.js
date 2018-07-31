@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET ajax-throttling
+// BEGIN-SNIPPET ajax-throttling.js
 function loopingAjaxTask(id, color) {
   return task(function * () {
     while (true) {

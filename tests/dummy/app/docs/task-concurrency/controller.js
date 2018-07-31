@@ -11,7 +11,7 @@ function * SHARED_TASK_FN(tracker) {
   }
 }
 
-// BEGIN-SNIPPET shared-tasks
+// BEGIN-SNIPPET shared-tasks.js
 export default Controller.extend({
   defaultTask:     task(SHARED_TASK_FN),
   restartableTask: task(SHARED_TASK_FN).restartable(),

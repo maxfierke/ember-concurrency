@@ -6,7 +6,7 @@ function * taskFn() {
   yield timeout(1500);
 }
 
-// BEGIN-SNIPPET task-groups
+// BEGIN-SNIPPET task-groups.js
 import { task, taskGroup } from 'ember-concurrency';
 
 export default Controller.extend({

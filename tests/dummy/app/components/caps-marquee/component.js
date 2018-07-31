@@ -12,7 +12,7 @@ export default Component.extend({
   tagName: '',
   text: null,
   scrambledText: null,
-// BEGIN-SNIPPET caps-marquee
+// BEGIN-SNIPPET caps-marquee.js
   marqueeLoop: task(function * () {
     let text = this.get('text');
     while (true) {

@@ -32,7 +32,7 @@
   of related buttons in a button bar.
 </p>
 
-{{! BEGIN-SNIPPET task-groups-template }}
+{{! BEGIN-SNIPPET task-groups-template.hbs }}
 {{#each tasks as |task|}}
   <button class="button {{if task.isIdle 'clickable'}}"
           onclick={{perform task}}>{{task.name}}</button>
@@ -48,6 +48,6 @@
 </h5>
 {{! END-SNIPPET }}
 
-{{code-snippet name="task-groups.js"}}
-{{code-snippet name="task-groups-template.hbs"}}
+{{docs-snippet name="task-groups.js"}}
+{{docs-snippet name="task-groups-template.hbs"}}
 

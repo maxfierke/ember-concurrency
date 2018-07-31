@@ -29,7 +29,7 @@
   properties and anything else supported by classic Ember objects.
 </p>
 
-{{code-snippet name="encapsulated-task.js"}}
+{{docs-snippet name="encapsulated-task.js"}}
 
 <h3>Live Example</h3>
 
@@ -40,7 +40,7 @@
   to expose the values set within the encapsulated tasks.
 </p>
 
-{{! BEGIN-SNIPPET encapsulated-task-template }}
+{{! BEGIN-SNIPPET encapsulated-task-template.hbs }}
 <p>
   <button class="button" onclick={{perform uploadFile makeRandomUrl}}>
     Start Upload
@@ -67,5 +67,5 @@
 
 {{! END-SNIPPET }}
 
-{{code-snippet name="encapsulated-task-controller.js"}}
-{{code-snippet name="encapsulated-task-template.hbs"}}
+{{docs-snippet name="encapsulated-task-controller.js"}}
+{{docs-snippet name="encapsulated-task-template.hbs"}}

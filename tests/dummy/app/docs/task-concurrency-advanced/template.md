@@ -21,7 +21,7 @@
   <code>perform()</code>s.
 </p>
 
-{{code-snippet name="shared-tasks-concurrent.js"}}
+{{docs-snippet name="shared-tasks-concurrent.js"}}
 
 <h4>restartable with .maxConcurrency(3)</h4>
 

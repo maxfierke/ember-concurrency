@@ -2,7 +2,7 @@ import { makeArray } from '@ember/array';
 import Controller from '@ember/controller';
 import { randomWord } from 'dummy/utils';
 
-// BEGIN-SNIPPET joining-tasks-2
+// BEGIN-SNIPPET joining-tasks-2.js
 import { task, timeout, all, race } from 'ember-concurrency';
 const methods = { all, race };
 

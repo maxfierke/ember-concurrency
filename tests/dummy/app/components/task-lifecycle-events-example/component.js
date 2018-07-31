@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { on } from '@ember/object/evented';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET task-lifecycle-events
+// BEGIN-SNIPPET task-lifecycle-events.js
 const COLORS = [
   '#0000FF',
   '#8A2BE2',

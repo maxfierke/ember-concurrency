@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET increment-button-task
+// BEGIN-SNIPPET increment-button-task.js
 export default Controller.extend({
   count: 0,
   incrementBy: task(function * (inc) {

@@ -19,7 +19,7 @@ export default Component.extend({
   tagName: '',
   text: null,
   scrambledText: null,
-// BEGIN-SNIPPET scrambled-text
+// BEGIN-SNIPPET scrambled-text.js
   startScrambling: task(function * () {
     let text = this.get('text');
     while (true) {

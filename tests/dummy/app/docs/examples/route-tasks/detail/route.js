@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET detail-route
+// BEGIN-SNIPPET detail-route.js
 export default Route.extend({
   notify: service('notify'),
 

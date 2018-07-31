@@ -6,7 +6,7 @@ function * shortPause() {
   yield timeout(2000);
 }
 
-// BEGIN-SNIPPET task-group-component
+// BEGIN-SNIPPET task-group-component.js
 export default Component.extend({
   taskGroup: null, // passed-in
 

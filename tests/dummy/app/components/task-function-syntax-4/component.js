@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
   status: null,
 
-// BEGIN-SNIPPET task-function-syntax-4
+// BEGIN-SNIPPET task-function-syntax-4.js
   myTask: task(function * () {
     this.set('status', `Thinking...`);
     try {

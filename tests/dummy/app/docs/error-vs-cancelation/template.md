@@ -60,7 +60,7 @@
   cancelations skip the <code>catch</code> block.
 </p>
 
-{{! BEGIN-SNIPPET error-vs-cancelation-template }}
+{{! BEGIN-SNIPPET error-vs-cancelation-template.hbs }}
 <button class="button" onclick={{perform myTask false}}>
   Run to Completion
 </button>
@@ -78,6 +78,6 @@
 
 {{! END-SNIPPET }}
 
-{{code-snippet name="error-vs-cancelation-template.hbs"}}
-{{code-snippet name="error-vs-cancelation.js"}}
+{{docs-snippet name="error-vs-cancelation-template.hbs"}}
+{{docs-snippet name="error-vs-cancelation.js"}}
 

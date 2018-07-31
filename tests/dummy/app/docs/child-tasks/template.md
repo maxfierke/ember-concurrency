@@ -10,7 +10,7 @@
 
 <h4>Example</h4>
 
-{{! BEGIN-SNIPPET child-tasks-template }}
+{{! BEGIN-SNIPPET child-tasks-template.hbs }}
 <h5>{{status}}</h5>
 
 <ul>
@@ -28,6 +28,6 @@
 </button>
 {{! END-SNIPPET }}
 
-{{code-snippet name="child-tasks.js"}}
-{{code-snippet name="child-tasks-template.hbs"}}
+{{docs-snippet name="child-tasks.js"}}
+{{docs-snippet name="child-tasks-template.hbs"}}
 

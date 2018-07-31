@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 
-// BEGIN-SNIPPET increment-button
+// BEGIN-SNIPPET increment-button.js
 function sendPress() {
   this.sendAction('press');
 }

@@ -21,7 +21,7 @@
   your task.
 </p>
 
-{{code-snippet name="writing-tasks.js"}}
+{{docs-snippet name="writing-tasks.js"}}
 
 <p>
   The next section on {{link-to 'Task Function Syntax' 'docs.task-function-syntax'}} goes

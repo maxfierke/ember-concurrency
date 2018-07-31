@@ -35,7 +35,7 @@
   they're running.
 </p>
 
-{{! BEGIN-SNIPPET decorating-tasks-template-isIdle }}
+{{! BEGIN-SNIPPET decorating-tasks-template-isIdle.hbs }}
 <p>
   {{#each tasks as |task|}}
     <button class="button" {{action task.perform}} class={{if task.isIdle 'button-primary'}}>
@@ -57,7 +57,7 @@
   <em>anyone</em> is performing <code>sharedTask</code>.
 </p>
 
-{{! BEGIN-SNIPPET decorating-tasks-template-performWillSucceed }}
+{{! BEGIN-SNIPPET decorating-tasks-template-performWillSucceed.hbs }}
 <p>
   {{#each tasks as |task|}}
     <button class="button" {{action task.perform}} class={{if task.performWillSucceed 'button-primary'}}>
@@ -67,7 +67,7 @@
 </p>
 {{! END-SNIPPET }}
 
-{{code-snippet name="decorating-tasks.js"}}
-{{code-snippet name="decorating-tasks-template-isIdle.hbs"}}
-{{code-snippet name="decorating-tasks-template-performWillSucceed.hbs"}}
+{{docs-snippet name="decorating-tasks.js"}}
+{{docs-snippet name="decorating-tasks-template-isIdle.hbs"}}
+{{docs-snippet name="decorating-tasks-template-performWillSucceed.hbs"}}
 

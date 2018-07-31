@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-// BEGIN-SNIPPET loading-ui-controller
+// BEGIN-SNIPPET loading-ui-controller.js
 export default Controller.extend({
   askQuestion: task(function * () {
     yield timeout(1000);
