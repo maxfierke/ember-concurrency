@@ -48,10 +48,13 @@ on the <code>result</code> property so that the stores can be displayed
 in the template.
 </p>
 
-{{code-template-toggle
+{{#code-template-toggle
     codeSnippet="better-syntax-1.js"
-    templateSnippet="better-syntax-1.hbs"}}
-{{tutorial-0}}
+    templateSnippet="better-syntax-1.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-1-example.hbs'}}
+    {{tutorial-0}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 This first implementation <em>works</em>, but it's not really production-ready.
@@ -71,10 +74,13 @@ component that the template can use to display a spinner.
   We'll use <code>++</code> comments to highlight newly added code.
 </em></p>
 
-{{code-template-toggle
+{{#code-template-toggle
     codeSnippet="better-syntax-2.js"
-    templateSnippet="better-syntax-2.hbs"}}
-{{tutorial-1}}
+    templateSnippet="better-syntax-2.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-2-example.hbs'}}
+    {{tutorial-1}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 This is certainly an improvement, but strange things start to happen if you
@@ -95,10 +101,13 @@ progress. To do this, just need to add a check to see if
 <code>isFindingStores</code> is true, and return early if so.
 </p>
 
-{{code-template-toggle
+{{#code-template-toggle
     codeSnippet="better-syntax-3.js"
-    templateSnippet="better-syntax-3.hbs"}}
-{{tutorial-2}}
+    templateSnippet="better-syntax-3.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-3-example.hbs'}}
+    {{tutorial-2}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 Now it is safe to tap the "Find Nearby Stores" button. Are we done?
@@ -136,10 +145,13 @@ via the <code>isDestroyed</code> flag, so we can just add a bit of
 defensive programming to our promise callback as follows:
 </p>
 
-{{code-template-toggle
+{{#code-template-toggle
     codeSnippet="better-syntax-4.js"
-    templateSnippet="better-syntax-4.hbs"}}
-{{tutorial-3}}
+    templateSnippet="better-syntax-4.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-4-example.hbs'}}
+    {{tutorial-3}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 Now if you click "Find Nearby Stores" and
@@ -176,10 +188,13 @@ regardless of success or failure. Unfortunately, this also
 means we have to duplicate our <code>isDestroyed</code> check.
 </p>
 
-{{code-template-toggle
+{{#code-template-toggle
     codeSnippet="better-syntax-5.js"
-    templateSnippet="better-syntax-5.hbs"}}
-{{tutorial-4}}
+    templateSnippet="better-syntax-5.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-5-example.hbs'}}
+    {{tutorial-4}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 And there you have it: a reasonably-production ready implementation

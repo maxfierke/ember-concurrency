@@ -2,7 +2,7 @@ import TutorialComponent from '../shared-tutorial/component';
 
 import { task } from 'ember-concurrency';
 
-// BEGIN-SNIPPET better-syntax-10
+// BEGIN-SNIPPET better-syntax-10.js
 export default TutorialComponent.extend({
   result: null,
   findStores: task(function * () {

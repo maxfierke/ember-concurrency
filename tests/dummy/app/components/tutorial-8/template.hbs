@@ -1,6 +1,6 @@
 <div class="tutorial-example">
 
-{{! BEGIN-SNIPPET better-syntax-9 }}
+{{! BEGIN-SNIPPET better-syntax-9.hbs }}
   <button class="button" onclick={{perform findStores}}>
     Find Nearby Stores
     {{#if findStores.isRunning}}
@@ -9,14 +9,14 @@
   </button>
 
   {{#if result}}
-    {{#each result.stores as |s|}}
-      <li>
-        <strong>{{s.name}}</strong>:
-        {{s.distance}} miles away
-      </li>
-    {{/each}}
+    <ul>
+      {{#each result.stores as |s|}}
+        <li>
+          <strong>{{s.name}}</strong>:
+          {{s.distance}} miles away
+        </li>
+      {{/each}}
+    </ul>
   {{/if}}
 {{! END-SNIPPET }}
-
-  <span class="tutorial-example-label">Example</span>
 </div>

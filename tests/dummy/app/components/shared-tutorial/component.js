@@ -62,16 +62,7 @@ export default Component.extend({
   },
   logs: null,
   formData: null,
-
-  showTemplate: false,
-
   geolocation,
   store,
-
-  actions: {
-    toggleTemplate() {
-      this.toggleProperty('showTemplate');
-    }
-  }
 });
 

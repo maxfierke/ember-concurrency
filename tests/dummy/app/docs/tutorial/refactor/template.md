@@ -39,8 +39,8 @@ Let's take a moment to point out everything that has changed:
 </p>
 
 <p>
-  Second, in the template, instead of using <code>onclick=\{{action 'findStores'}}</code>,
-  we use <code>onclick=\{{perform findStores}}</code>.
+  Second, in the template, instead of using <code>onclick=&#123;&#123;action 'findStores'&#125;&#125;</code>,
+  we use <code>onclick=&#123;&#123;perform findStores&#125;&#125;</code>.
 </p>
 
 <p>
@@ -140,28 +140,22 @@ the task can be immediately performed / retried again. So, we don't need to chan
 
 <h3>Final Diff</h3>
 
-<p>
-JavaScript:
-</p>
-
-{{code-template-toggle
-    codeSnippet="better-syntax-10.js"
-    templateSnippet="better-syntax-6.js"
-    toggleDescription="diff"
-    }}
-
-<p>
 <br>
-Template:
-</p>
 
-{{code-template-toggle
-    codeSnippet="better-syntax-10.hbs"
-    templateSnippet="better-syntax-6.hbs"
-    toggleDescription="diff"
-    }}
+<h5>JavaScript:</h5>
 
-<br>
+{{#docs-demo as |demo|}}
+  {{demo.snippet "better-syntax-6.js" label='Before'}}
+  {{demo.snippet "better-syntax-10.js" label='After'}}
+{{/docs-demo}}
+
+<h5>Template:</h5>
+
+{{#docs-demo as |demo|}}
+  {{demo.snippet "better-syntax-6.hbs" label='Before'}}
+  {{demo.snippet "better-syntax-10.hbs" label='After'}}
+{{/docs-demo}}
+
 <h3>Conclusion</h3>
 
 <p>

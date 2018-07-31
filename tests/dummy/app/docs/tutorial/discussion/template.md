@@ -7,10 +7,13 @@ quite a bit of code to cover all of the corner cases and build
 something that is actually production-ready:
 </p>
 
-{{code-template-toggle
+{{#code-template-toggle
     codeSnippet="better-syntax-6.js"
-    templateSnippet="better-syntax-6.hbs"}}
-{{tutorial-5}}
+    templateSnippet="better-syntax-6.hbs" as |demo|}}
+  {{#demo.example name='better-syntax-6-example.hbs'}}
+    {{tutorial-5}}
+  {{/demo.example}}
+{{/code-template-toggle}}
 
 <p>
 This is not the beautiful Ember code we all thought we'd be writing,

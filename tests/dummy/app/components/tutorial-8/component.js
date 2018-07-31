@@ -1,6 +1,6 @@
 import TutorialComponent from '../shared-tutorial/component';
 
-// BEGIN-SNIPPET better-syntax-9
+// BEGIN-SNIPPET better-syntax-9.js
 import { task } from 'ember-concurrency';
 
 export default TutorialComponent.extend({

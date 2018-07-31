@@ -6,14 +6,14 @@
   </button>
 
   {{#if result}}
-    {{#each result.stores as |s|}}
-      <li>
-        <strong>{{s.name}}</strong>:
-        {{s.distance}} miles away
-      </li>
-    {{/each}}
+    <ul>
+      {{#each result.stores as |s|}}
+        <li>
+          <strong>{{s.name}}</strong>:
+          {{s.distance}} miles away
+        </li>
+      {{/each}}
+    </ul>
   {{/if}}
 {{! END-SNIPPET }}
-
-  <span class="tutorial-example-label">Example</span>
 </div>
