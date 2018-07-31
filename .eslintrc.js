@@ -6,7 +6,8 @@ module.exports = {
   },
   extends: 'eslint:recommended',
   env: {
-    browser: true
+    browser: true,
+    es6: true
   },
   rules: {
     'require-yield': 0
@@ -29,7 +30,7 @@ module.exports = {
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2017
       },
       env: {
         browser: false,

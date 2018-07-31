@@ -79,7 +79,7 @@ export function resolveScheduler(propertyObj, obj, TaskGroup) {
     assert(`Expected path '${propertyObj._taskGroupPath}' to resolve to a TaskGroup object, but instead was ${taskGroup}`, taskGroup instanceof TaskGroup);
     return taskGroup._scheduler;
   } else {
-    return Scheduler.create({
+    return new Scheduler({
       bufferPolicy: propertyObj._bufferPolicy,
       maxConcurrency: propertyObj._maxConcurrency
     });

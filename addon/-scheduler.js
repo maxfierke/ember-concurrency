@@ -1,34 +1,33 @@
 import { once } from '@ember/runloop';
-import EmberObject, { set, get } from '@ember/object';
+import { set, get } from '@ember/object';
 
 let SEEN_INDEX = 0;
 
-const Scheduler = EmberObject.extend({
-  lastPerformed:  null,
-  lastStarted:    null,
-  lastRunning:    null,
-  lastSuccessful: null,
-  lastComplete:   null,
-  lastErrored:    null,
-  lastCanceled:   null,
-  lastIncomplete: null,
-  performCount: 0,
-
-  boundHandleFulfill: null,
-  boundHandleReject: null,
-
-  init() {
-    this._super(...arguments);
+export default class Scheduler {
+  constructor(options) {
+    this.lastPerformed = null;
+    this.lastStarted = null;
+    this.lastRunning = null;
+    this.lastSuccessful = null;
+    this.lastComplete = null;
+    this.lastErrored = null;
+    this.lastCanceled = null;
+    this.lastIncomplete = null;
+    this.performCount = 0;
+    this.boundHandleFulfill = null;
+    this.boundHandleReject = null;
     this.activeTaskInstances = [];
     this.queuedTaskInstances = [];
-  },
+    this.bufferPolicy = options.bufferPolicy;
+    this.maxConcurrency = options.maxConcurrency;
+  }
 
   cancelAll(reason) {
     let seen = [];
     this.spliceTaskInstances(reason, this.activeTaskInstances, 0, this.activeTaskInstances.length, seen);
     this.spliceTaskInstances(reason, this.queuedTaskInstances, 0, this.queuedTaskInstances.length, seen);
     flushTaskCounts(seen);
-  },
+  }
 
   spliceTaskInstances(cancelReason, taskInstances, index, count, seen) {
     for (let i = index; i < index + count; ++i) {
@@ -47,15 +46,15 @@ const Scheduler = EmberObject.extend({
       }
     }
     taskInstances.splice(index, count);
-  },
+  }
 
   schedule(taskInstance) {
     set(this, 'lastPerformed', taskInstance);
-    this.incrementProperty('performCount');
+    set(this, 'performCount', this.performCount + 1);
     taskInstance.task.incrementProperty('numQueued');
     this.queuedTaskInstances.push(taskInstance);
     this._flushQueues();
-  },
+  }
 
   _flushQueues() {
     let seen = [];
@@ -68,7 +67,7 @@ const Scheduler = EmberObject.extend({
 
     this.bufferPolicy.schedule(this);
 
-    var lastStarted = null;
+    let lastStarted = null;
     for (let i = 0; i < this.activeTaskInstances.length; ++i) {
       let taskInstance = this.activeTaskInstances[i];
       if (!taskInstance.hasStarted) {
@@ -89,7 +88,7 @@ const Scheduler = EmberObject.extend({
 
     flushTaskCounts(seen);
     set(this, 'concurrency', this.activeTaskInstances.length);
-  },
+  }
 
   _startTaskInstance(taskInstance) {
     let task = taskInstance.task;
@@ -113,7 +112,7 @@ const Scheduler = EmberObject.extend({
       once(this, this._flushQueues);
     });
   }
-});
+}
 
 function flushTaskCounts(tasks) {
   SEEN_INDEX++;
@@ -148,6 +147,3 @@ function filterFinished(taskInstances) {
   }
   return ret;
 }
-
-export default Scheduler;
-

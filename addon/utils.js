@@ -1,5 +1,5 @@
 import { later, cancel } from '@ember/runloop';
-import { Promise, defer } from 'rsvp';
+import { Promise } from 'rsvp';
 import ComputedProperty from '@ember/object/computed';
 import Ember from 'ember';
 
@@ -10,16 +10,18 @@ export function isEventedObject(c) {
   ));
 }
 
-export function Arguments(args, defer) {
-  this.args = args;
-  this.defer = defer;
+export class Arguments {
+  constructor(args, defer) {
+    this.args = args;
+    this.defer = defer;
+  }
+  resolve(value) {
+    if (this.defer) {
+      this.defer.resolve(value);
+    }
+  }
 }
 
-Arguments.prototype.resolve = function(value) {
-  if (this.defer) {
-    this.defer.resolve(value);
-  }
-};
 
 
 export let objectAssign = Object.assign || function objectAssign(target) {
@@ -29,10 +31,10 @@ export let objectAssign = Object.assign || function objectAssign(target) {
   }
 
   target = Object(target);
-  for (var index = 1; index < arguments.length; index++) {
-    var source = arguments[index];
+  for (let index = 1; index < arguments.length; index++) {
+    let source = arguments[index];
     if (source != null) {
-      for (var key in source) {
+      for (let key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
@@ -84,12 +86,11 @@ for (let i = 0; i < locations.length; i++) {
   }
 }
 
-// TODO: Symbol polyfill?
-export const yieldableSymbol = "__ec_yieldable__";
-export const YIELDABLE_CONTINUE = "next";
-export const YIELDABLE_THROW = "throw";
-export const YIELDABLE_RETURN = "return";
-export const YIELDABLE_CANCEL = "cancel";
+export const yieldableSymbol = Symbol("__ec_yieldable__");
+export const YIELDABLE_CONTINUE = Symbol("next");
+export const YIELDABLE_THROW = Symbol("throw");
+export const YIELDABLE_RETURN = Symbol("return");
+export const YIELDABLE_CANCEL = Symbol("cancel");
 
 export const _ComputedProperty = ComputedProperty;
 
@@ -126,8 +127,10 @@ export function timeout(ms) {
   return promise;
 }
 
-export function RawValue(value) {
-  this.value = value;
+export class RawValue {
+  constructor(value) {
+    this.value = value;
+  }
 }
 
 export function raw(value) {
@@ -148,17 +151,15 @@ export function rawTimeout(ms) {
 }
 
 export function yieldableToPromise(yieldable) {
-  let def = defer();
-
-  def.promise.__ec_cancel__ = yieldable[yieldableSymbol]({
-    proceed(_index, resumeType, value) {
-      if (resumeType == YIELDABLE_CONTINUE || resumeType == YIELDABLE_RETURN) {
-        def.resolve(value);
-      } else {
-        def.reject(value);
+  return new Promise(function(resolve, reject) {
+    this.__ec_cancel__ = yieldable[yieldableSymbol]({
+      proceed(_index, resumeType, value) {
+        if (resumeType == YIELDABLE_CONTINUE || resumeType == YIELDABLE_RETURN) {
+          resolve(value);
+        } else {
+          reject(value);
+        }
       }
-    }
-  }, 0);
-
-  return def.promise;
+    }, 0);
+  });
 }
