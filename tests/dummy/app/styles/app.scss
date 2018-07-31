@@ -1,44 +1,11 @@
-// @import "./normalize";
-// @import "./skeleton";
-
 @import "./fontello";
 
 .centered {
   text-align: center;
 }
 
-section {
-  margin-top: 10rem;
-}
-
-a {
-  text-decoration: none;
-}
-
-.navbar {
-  .nav-bar-link-outer a {
-    text-decoration: none;
-    color: black;
-    line-height: 6rem;
-    padding: 2rem 2rem;
-  }
-}
-
-.nav-bar-link-outer {
-  text-align: center;
-}
-
 .docs {
   margin-top: 2rem;
-}
-
-.side-menu {
-  padding-left: 2rem;
-
-  .active {
-    font-weight: bold;
-    text-decoration: underline;
-  }
 }
 
 .progress-outer {
@@ -209,53 +176,8 @@ th, td {
 }
 
 .tutorial-example {
-  border: 1px solid #eee;
-  padding: 2rem;
-  // height: 150px;
-  position: relative;
   button {
     margin-bottom: 1.7rem;
-  }
-  margin-bottom: 2rem;
-}
-
-.tutorial-example-label {
-  position: absolute;
-  right: 5px;
-  bottom: 0;
-  color: #bbb;
-}
-
-.code-template-toggle {
-  position: relative;
-  background-color: #f8f8f8;
-  pre {
-    margin: 0 !important;
-  }
-}
-
-.code-template-toggle-button {
-  position: absolute;
-  z-index: 5;
-  margin-bottom: 0;
-  right: 1rem;
-  top: 1rem;
-}
-
-@media (max-width: 900px) {
-  .code-template-toggle-button {
-    bottom: 1rem;
-    top: auto;
-  }
-}
-
-.code-template-toggle-section {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  &.hidden {
-    visibility: hidden;
   }
 }
 
