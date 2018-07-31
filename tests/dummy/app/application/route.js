@@ -7,7 +7,7 @@ export default Route.extend({
 
   beforeModel() {
     if (!Ember.testing && !this.get('fastboot.isFastBoot')) {
-      this.router.on('didTransition', () => {
+      this._router.on('didTransition', () => {
         window.scrollTo(0,0);
       });
     }
