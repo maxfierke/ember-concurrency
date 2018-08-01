@@ -38,137 +38,123 @@ const PerformProxy = EmberObject.extend({
 });
 
 /**
-  The `Task` object lives on a host Ember object (e.g.
-  a Component, Route, or Controller). You call the
-  {@linkcode Task#perform .perform()} method on this object
-  to create run individual {@linkcode TaskInstance}s,
-  and at any point, you can call the {@linkcode Task#cancelAll .cancelAll()}
-  method on this object to cancel all running or enqueued
-  {@linkcode TaskInstance}s.
-
-
-  <style>
-    .ignore-this--this-is-here-to-hide-constructor,
-    #Task{ display: none }
-  </style>
-
-  @class Task
-*/
+ * The `Task` object lives on a host Ember object (e.g.
+ * a Component, Route, or Controller). You call the
+ * {@linkcode Task#perform .perform()} method on this object
+ * to create run individual {@linkcode TaskInstance}s,
+ * and at any point, you can call the {@linkcode Task#cancelAll .cancelAll()}
+ * method on this object to cancel all running or enqueued
+ * {@linkcode TaskInstance}s.
+ *
+ * A Task is returned when accessing a task property on an object and should not
+ * be created manually or imported directly.
+ *
+ * @class Task
+ * @constructor
+ * @export named
+ */
 export const Task = EmberObject.extend(TaskStateMixin, {
   /**
    * `true` if any current task instances are running.
    *
-   * @memberof Task
-   * @member {boolean} isRunning
-   * @instance
+   * @property isRunning
+   * @type {boolean}
    * @readOnly
    */
 
   /**
    * `true` if any future task instances are queued.
    *
-   * @memberof Task
-   * @member {boolean} isQueued
-   * @instance
+   * @property isQueued
+   * @type {boolean}
    * @readOnly
    */
 
   /**
    * `true` if the task is not in the running or queued state.
    *
-   * @memberof Task
-   * @member {boolean} isIdle
-   * @instance
+   * @property isIdle
+   * @type {boolean}
    * @readOnly
    */
 
   /**
    * The current state of the task: `"running"`, `"queued"` or `"idle"`.
    *
-   * @memberof Task
-   * @member {string} state
-   * @instance
+   * @property state
+   * @type {string}
    * @readOnly
    */
 
   /**
    * The most recently started task instance.
    *
-   * @memberof Task
-   * @member {TaskInstance} last
-   * @instance
+   * @property last
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recent task instance that is currently running.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastRunning
-   * @instance
+   * @property lastRunning
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recently performed task instance.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastPerformed
-   * @instance
+   * @property lastPerformed
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recent task instance that succeeded.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastSuccessful
-   * @instance
+   * @property lastSuccessful
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recently completed task instance.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastComplete
-   * @instance
+   * @property lastComplete
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recent task instance that errored.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastErrored
-   * @instance
+   * @property lastErrored
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recently canceled task instance.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastCanceled
-   * @instance
+   * @property lastCanceled
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The most recent task instance that is incomplete.
    *
-   * @memberof Task
-   * @member {TaskInstance} lastIncomplete
-   * @instance
+   * @property lastIncomplete
+   * @type {TaskInstance}
    * @readOnly
    */
 
   /**
    * The number of times this task has been performed.
    *
-   * @memberof Task
-   * @member {number} performCount
-   * @instance
+   * @property performCount
+   * @type {number}
    * @readOnly
    */
 
@@ -196,6 +182,9 @@ export const Task = EmberObject.extend(TaskStateMixin, {
     return task;
   },
 
+  /**
+   * @method linked
+   */
   linked() {
     let taskInstance = getRunningInstance();
     if (!taskInstance) {
@@ -209,6 +198,9 @@ export const Task = EmberObject.extend(TaskStateMixin, {
     });
   },
 
+  /**
+   * @method unlinked
+   */
   unlinked() {
     return PerformProxy.create({
       _task: this,
@@ -228,112 +220,13 @@ export const Task = EmberObject.extend(TaskStateMixin, {
   },
 
   /**
-   * This property is true if this task is NOT running, i.e. the number
-   * of currently running TaskInstances is zero.
-   *
-   * This property is useful for driving the state/style of buttons
-   * and loading UI, among other things.
-   *
-   * @memberof Task
-   * @instance
-   * @readOnly
-   */
-
-  /**
-   * This property is true if this task is running, i.e. the number
-   * of currently running TaskInstances is greater than zero.
-   *
-   * This property is useful for driving the state/style of buttons
-   * and loading UI, among other things.
-   *
-   * @memberof Task
-   * @instance
-   * @readOnly
-   */
-
-  /**
-   * EXPERIMENTAL
-   *
-   * This value describes what would happen to the TaskInstance returned
-   * from .perform() if .perform() were called right now.  Returns one of
-   * the following values:
-   *
-   * - `succeed`: new TaskInstance will start running immediately
-   * - `drop`: new TaskInstance will be dropped
-   * - `enqueue`: new TaskInstance will be enqueued for later execution
-   *
-   * @memberof Task
-   * @instance
-   * @private
-   * @readOnly
-   */
-
-  /**
-   * EXPERIMENTAL
-   *
-   * Returns true if calling .perform() right now would immediately start running
-   * the returned TaskInstance.
-   *
-   * @memberof Task
-   * @instance
-   * @private
-   * @readOnly
-   */
-
-  /**
-   * EXPERIMENTAL
-   *
-   * Returns true if calling .perform() right now would immediately cancel (drop)
-   * the returned TaskInstance.
-   *
-   * @memberof Task
-   * @instance
-   * @private
-   * @readOnly
-   */
-
-  /**
-   * EXPERIMENTAL
-   *
-   * Returns true if calling .perform() right now would enqueue the TaskInstance
-   * rather than execute immediately.
-   *
-   * @memberof Task
-   * @instance
-   * @private
-   * @readOnly
-   */
-
-  /**
-   * EXPERIMENTAL
-   *
-   * Returns true if calling .perform() right now would cause a previous task to be canceled
-   *
-   * @memberof Task
-   * @instance
-   * @private
-   * @readOnly
-   */
-
-
-  /**
-   * The current number of active running task instances. This
-   * number will never exceed maxConcurrency.
-   *
-   * @memberof Task
-   * @instance
-   * @readOnly
-   */
-
-  /**
    * Cancels all running or queued `TaskInstance`s for this Task.
    * If you're trying to cancel a specific TaskInstance (rather
    * than all of the instances running under this task) call
    * `.cancel()` on the specific TaskInstance.
    *
    * @method cancelAll
-   * @memberof Task
-   * @instance
+   * @return {void}
    */
 
   toString() {
@@ -350,15 +243,14 @@ export const Task = EmberObject.extend(TaskStateMixin, {
    * to run at later time, after the currently running task(s) have finished.
    *
    * @method perform
-   * @memberof Task
-   * @param {*} arg* - args to pass to the task function
-   * @instance
+   * @param {*} [...args] arguments to pass to the task function
    *
    * @fires TaskInstance#TASK_NAME:started
    * @fires TaskInstance#TASK_NAME:succeeded
    * @fires TaskInstance#TASK_NAME:errored
    * @fires TaskInstance#TASK_NAME:canceled
    *
+   * @return {TaskInstance}
    */
   perform(...args) {
     return this._performShared(args, PERFORM_TYPE_DEFAULT, null);
@@ -398,20 +290,20 @@ export const Task = EmberObject.extend(TaskStateMixin, {
 });
 
 /**
-  A {@link TaskProperty} is the Computed Property-like object returned
-  from the {@linkcode task} function. You can call Task Modifier methods
-  on this object to configure the behavior of the {@link Task}.
-
-  See [Managing Task Concurrency](/#/docs/task-concurrency) for an
-  overview of all the different task modifiers you can use and how
-  they impact automatic cancelation / enqueueing of task instances.
-
-  <style>
-    .ignore-this--this-is-here-to-hide-constructor,
-    #TaskProperty { display: none }
-  </style>
-
-  @class TaskProperty
+ * A {@link TaskProperty} is the Computed Property-like object returned
+ * from the {@linkcode task} function. You can call Task Modifier methods
+ * on this object to configure the behavior of the {@link Task}.
+ *
+ * See [Managing Task Concurrency](/#/docs/task-concurrency) for an
+ * overview of all the different task modifiers you can use and how
+ * they impact automatic cancelation / enqueueing of task instances.
+ *
+ * A TaskProperty is returned by the `task` function and should not be created
+ * manually or imported directly.
+ *
+ * @class TaskProperty
+ * @constructor
+ * @export named
 */
 export function TaskProperty(taskFn) {
   let tp = this;
@@ -476,9 +368,8 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * [See the Writing Tasks Docs for more info](/#/docs/writing-tasks)
    *
    * @method on
-   * @memberof TaskProperty
-   * @param {String} eventNames*
-   * @instance
+   * @param {String} ...eventNames
+   * @return {TaskProperty}
    */
   on() {
     this.eventNames = this.eventNames || [];
@@ -494,9 +385,8 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * [See the Live Example](/#/docs/examples/route-tasks/1)
    *
    * @method cancelOn
-   * @memberof TaskProperty
-   * @param {String} eventNames*
-   * @instance
+   * @param {String} ...eventNames
+   * @return {TaskProperty}
    */
   cancelOn() {
     this.cancelEventNames = this.cancelEventNames || [];
@@ -504,6 +394,13 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
     return this;
   },
 
+  /**
+   * Calling `task(...).observes('someProperty')` configures the task to be
+   * automatically performed when any of the specified properties change.
+   *
+   * @method observes
+   * @param {*} ...properties
+   */
   observes(...properties) {
     this._observes = properties;
     return this;
@@ -517,8 +414,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * [See the Live Example](/#/docs/examples/route-tasks/1)
    *
    * @method restartable
-   * @memberof TaskProperty
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -527,8 +423,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * maxConcurrency to 1.
    *
    * @method enqueue
-   * @memberof TaskProperty
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -537,8 +432,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * at maxConcurrency. Sets default maxConcurrency to 1.
    *
    * @method drop
-   * @memberof TaskProperty
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -546,8 +440,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * performed {@linkcode TaskInstance }.
    *
    * @method keepLatest
-   * @memberof TaskProperty
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -579,9 +472,8 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * ```
    *
    * @method maxConcurrency
-   * @memberof TaskProperty
    * @param {Number} n The maximum number of concurrently running tasks
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -591,9 +483,8 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * [See the Task Group docs for more information](/#/docs/task-groups)
    *
    * @method group
-   * @memberof TaskProperty
    * @param {String} groupPath A path to the TaskGroup property
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -614,8 +505,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * ```
    *
    * @method evented
-   * @memberof TaskProperty
-   * @instance
+   * @return {TaskProperty}
    */
 
   /**
@@ -624,8 +514,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * e.g. "TaskInstance 'doStuff' was canceled because the object it lives on was destroyed or unrendered"
    *
    * @method debug
-   * @memberof TaskProperty
-   * @instance
+   * @return {TaskProperty}
    */
 
   perform() {

@@ -43,25 +43,6 @@ function handleYieldedUnknownThenable(thenable, taskInstance, resumeIndex) {
   });
 }
 
-/**
- * Returns true if the object passed to it is a TaskCancelation error.
- * If you call `someTask.perform().catch(...)` or otherwise treat
- * a {@linkcode TaskInstance} like a promise, you may need to
- * handle the cancelation of a TaskInstance differently from
- * other kinds of errors it might throw, and you can use this
- * convenience function to distinguish cancelation from errors.
- *
- * ```js
- * click() {
- *   this.get('myTask').perform().catch(e => {
- *     if (!didCancel(e)) { throw e; }
- *   });
- * }
- * ```
- *
- * @param {Object} error the caught error, which might be a TaskCancelation
- * @returns {Boolean}
- */
 export function didCancel(e) {
   return e && e.name === TASK_CANCELATION_NAME;
 }
@@ -78,23 +59,24 @@ function spliceSlice(str, index, count, add) {
 }
 
 /**
-  A `TaskInstance` represent a single execution of a
-  {@linkcode Task}. Every call to {@linkcode Task#perform} returns
-  a `TaskInstance`.
-
-  `TaskInstance`s are cancelable, either explicitly
-  via {@linkcode TaskInstance#cancel} or {@linkcode Task#cancelAll},
-  or automatically due to the host object being destroyed, or
-  because concurrency policy enforced by a
-  {@linkcode TaskProperty Task Modifier} canceled the task instance.
-
-  <style>
-    .ignore-this--this-is-here-to-hide-constructor,
-    #TaskInstance { display: none }
-  </style>
-
-  @class TaskInstance
-*/
+ * A `TaskInstance` represent a single execution of a
+ * {@linkcode Task}. Every call to {@linkcode Task#perform} returns
+ * a `TaskInstance`.
+ *
+ * `TaskInstance`s are cancelable, either explicitly
+ * via {@linkcode TaskInstance#cancel} or {@linkcode Task#cancelAll},
+ * or automatically due to the host object being destroyed, or
+ * because concurrency policy enforced by a
+ * {@linkcode TaskProperty Task Modifier} canceled the task instance.
+ *
+ * TaskInstances may be returned by calling `perform` on a `Task`, but they
+ * should not be created manually or imported directly.
+ *
+ * @class TaskInstance
+ * @constructor
+ * @protected
+ * @export named
+ */
 let taskInstanceAttrs = {
   iterator: null,
   _disposer: null,
@@ -114,8 +96,8 @@ let taskInstanceAttrs = {
    * other than a rejecting promise, this property will be set
    * with that value.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property value
+   * @type {any}
    * @readOnly
    */
   value: null,
@@ -125,8 +107,8 @@ let taskInstanceAttrs = {
    * a promise that rejects), this property will be set with that error.
    * Otherwise, it is null.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property error
+   * @type {Error}
    * @readOnly
    */
   error: null,
@@ -134,8 +116,8 @@ let taskInstanceAttrs = {
   /**
    * True if the task instance is fulfilled.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property isSuccessful
+   * @type {boolean}
    * @readOnly
    */
   isSuccessful: false,
@@ -143,8 +125,8 @@ let taskInstanceAttrs = {
   /**
    * True if the task instance resolves to a rejection.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property isError
+   * @type {boolean}
    * @readOnly
    */
   isError: false,
@@ -152,18 +134,26 @@ let taskInstanceAttrs = {
   /**
    * True if the task instance was canceled before it could run to completion.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property isCanceled
+   * @type {boolean}
    * @readOnly
    */
   isCanceled: and('isCanceling', 'isFinished'),
+
+  /**
+   * True if the task instance is being canceled.
+   *
+   * @property isCanceling
+   * @type {boolean}
+   * @readOnly
+   */
   isCanceling: false,
 
   /**
    * True if the task instance has started, else false.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property hasStarted
+   * @type {boolean}
    * @readOnly
    */
   hasStarted: false,
@@ -171,8 +161,8 @@ let taskInstanceAttrs = {
   /**
    * True if the task has run to completion.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property isFinished
+   * @type {boolean}
    * @readOnly
    */
   isFinished: false,
@@ -180,8 +170,8 @@ let taskInstanceAttrs = {
   /**
    * True if the task is still running.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property isRunning
+   * @type {boolean}
    * @readOnly
    */
   isRunning: not('isFinished'),
@@ -202,8 +192,8 @@ let taskInstanceAttrs = {
    * The animated timeline examples on the [Task Concurrency](/#/docs/task-concurrency)
    * docs page make use of this property.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property state
+   * @type {string}
    * @readOnly
    */
   state: computed('isDropped', 'isCanceling', 'hasStarted', 'isFinished', function() {
@@ -227,8 +217,8 @@ let taskInstanceAttrs = {
    * task with the {@linkcode TaskProperty#drop .drop()} modifier applied
    * will result in the second task instance being dropped.
    *
-   * @memberof TaskInstance
-   * @instance
+   * @property isDropped
+   * @type {boolean}
    * @readOnly
    */
   isDropped: computed('isCanceling', 'hasStarted', function() {
@@ -342,8 +332,7 @@ let taskInstanceAttrs = {
    * already been canceled or has already finished running.
    *
    * @method cancel
-   * @memberof TaskInstance
-   * @instance
+   * @return {void}
    */
   cancel(cancelReason = ".cancel() was explicitly called") {
     if (this.isCanceling || get(this, 'isFinished')) { return; }
@@ -383,24 +372,18 @@ let taskInstanceAttrs = {
    * an error with a `.name` property with value `"TaskCancelation"`.
    *
    * @method then
-   * @memberof TaskInstance
-   * @instance
    * @return {Promise}
    */
   then: forwardToInternalPromise('then'),
 
   /**
    * @method catch
-   * @memberof TaskInstance
-   * @instance
    * @return {Promise}
    */
   catch: forwardToInternalPromise('catch'),
 
   /**
    * @method finally
-   * @memberof TaskInstance
-   * @instance
    * @return {Promise}
    */
   finally: forwardToInternalPromise('finally'),
@@ -501,6 +484,7 @@ let taskInstanceAttrs = {
    * _dispose() will run that disposer and cancel the child TaskInstance.
    *
    * @private
+   * @method _dispose
    */
   _dispose() {
     if (this._disposer) {
@@ -522,6 +506,7 @@ let taskInstanceAttrs = {
    * essentially taking a single step of execution on the task function.
    *
    * @private
+   * @method _resumeGenerator
    */
   _resumeGenerator(nextValue, iteratorMethod) {
     assert("The task generator function has already run to completion. This is probably an ember-concurrency bug.", !this._isGeneratorDone());
@@ -573,6 +558,7 @@ let taskInstanceAttrs = {
    * EncapsulatedTask definition.
    *
    * @private
+   * @method _makeIterator
    */
   _makeIterator() {
     return this.fn.apply(this.context, this.args);
@@ -597,6 +583,7 @@ let taskInstanceAttrs = {
    * the TaskInstance has moved on.
    *
    * @private
+   * @method _advanceIndex
    */
   _advanceIndex(index) {
     if (this._index === index) {
