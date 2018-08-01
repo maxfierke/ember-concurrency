@@ -482,9 +482,6 @@ let taskInstanceAttrs = {
    * For instance, when a task yields a TaskInstance, it registers that
    * child TaskInstance's disposer, so that if the parent task is canceled,
    * _dispose() will run that disposer and cancel the child TaskInstance.
-   *
-   * @private
-   * @method _dispose
    */
   _dispose() {
     if (this._disposer) {
@@ -504,9 +501,6 @@ let taskInstanceAttrs = {
   /**
    * Calls .next()/.throw()/.return() on the task's generator function iterator,
    * essentially taking a single step of execution on the task function.
-   *
-   * @private
-   * @method _resumeGenerator
    */
   _resumeGenerator(nextValue, iteratorMethod) {
     assert("The task generator function has already run to completion. This is probably an ember-concurrency bug.", !this._isGeneratorDone());
@@ -556,9 +550,6 @@ let taskInstanceAttrs = {
    * `_makeIterator` is overridden in EncapsulatedTask to produce
    * an iterator based on the `*perform()` function on the
    * EncapsulatedTask definition.
-   *
-   * @private
-   * @method _makeIterator
    */
   _makeIterator() {
     return this.fn.apply(this.context, this.args);
@@ -581,9 +572,6 @@ let taskInstanceAttrs = {
    * needs to pass in the `index` they were provided that acts
    * as a ticket to resume the TaskInstance that expires once
    * the TaskInstance has moved on.
-   *
-   * @private
-   * @method _advanceIndex
    */
   _advanceIndex(index) {
     if (this._index === index) {
