@@ -18,7 +18,10 @@
 
 <h2>Live Example</h2>
 
-{{ajax-throttling-example}}
+{{#docs-demo as |demo|}}
+  {{#demo.example name='ajax-throttling-example-template.hbs'}}
+    {{ajax-throttling-example}}
+  {{/demo.example}}
 
-{{docs-snippet name="ajax-throttling.js"}}
-
+  {{demo.snippet "ajax-throttling.js" label='component.js'}}
+{{/docs-demo}}

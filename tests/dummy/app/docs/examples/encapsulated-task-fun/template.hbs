@@ -7,21 +7,22 @@
 
 <h2>Live Example</h2>
 
-{{! BEGIN-SNIPPET encapsulated-task-fun-template.hbs }}
-<p>
-  <button class="button" onclick={{perform doStuff}}>
-    Do Stuff
-  </button>
-</p>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='encapsulated-task-fun-template.hbs'}}
+    <p>
+      <button class="button" onclick={{perform doStuff}}>
+        Do Stuff
+      </button>
+    </p>
 
-{{#with doStuff.last as |t|}}
-  <h4>value: {{t.value}}</h4>
-  <h4>foo:   {{t.foo.last.value}}</h4>
-  <h4>bar:   {{t.bar.last.value}}</h4>
-  <h4>baz:   {{t.baz.last.value}}</h4>
-{{/with}}
-{{! END-SNIPPET }}
+    {{#with doStuff.last as |t|}}
+      <h4>value: {{t.value}}</h4>
+      <h4>foo:   {{t.foo.last.value}}</h4>
+      <h4>bar:   {{t.bar.last.value}}</h4>
+      <h4>baz:   {{t.baz.last.value}}</h4>
+    {{/with}}
+  {{/demo.example}}
 
-{{docs-snippet name="encapsulated-task-fun-controller.js"}}
-{{docs-snippet name="encapsulated-task-fun-template.hbs"}}
-
+  {{demo.snippet "encapsulated-task-fun-controller.js"}}
+  {{demo.snippet "encapsulated-task-fun-template.hbs"}}
+{{/docs-demo}}

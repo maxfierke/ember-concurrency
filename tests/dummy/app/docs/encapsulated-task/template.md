@@ -40,32 +40,33 @@
   to expose the values set within the encapsulated tasks.
 </p>
 
-{{! BEGIN-SNIPPET encapsulated-task-template.hbs }}
-<p>
-  <button class="button" onclick={{perform uploadFile makeRandomUrl}}>
-    Start Upload
-  </button>
-</p>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='encapsulated-task-template.hbs'}}
+    <p>
+      <button class="button" onclick={{perform uploadFile makeRandomUrl}}>
+        Start Upload
+      </button>
+    </p>
 
-<h4>Queued Uploads: {{uploadFile.numQueued}}</h4>
+    <h4>Queued Uploads: {{uploadFile.numQueued}}</h4>
 
-{{#with uploadFile.last as |encapsTask|}}
-  <h4>
-    Uploading to {{encapsTask.url}} ({{encapsTask.stateText}}):
-    {{encapsTask.progress}}%
-  </h4>
-{{/with}}
+    {{#with uploadFile.last as |encapsTask|}}
+      <h4>
+        Uploading to {{encapsTask.url}} ({{encapsTask.stateText}}):
+        {{encapsTask.progress}}%
+      </h4>
+    {{/with}}
 
-{{#if uploadFile.lastSuccessful}}
-  <h4 style="color: green;">
-    <strong>
-    Upload to {{uploadFile.lastSuccessful.url}}:
-    {{uploadFile.lastSuccessful.value}}
-    </strong>
-  </h4>
-{{/if}}
+    {{#if uploadFile.lastSuccessful}}
+      <h4 style="color: green;">
+        <strong>
+        Upload to {{uploadFile.lastSuccessful.url}}:
+        {{uploadFile.lastSuccessful.value}}
+        </strong>
+      </h4>
+    {{/if}}
+  {{/demo.example}}
 
-{{! END-SNIPPET }}
-
-{{docs-snippet name="encapsulated-task-controller.js"}}
-{{docs-snippet name="encapsulated-task-template.hbs"}}
+  {{demo.snippet "encapsulated-task-controller.js"}}
+  {{demo.snippet "encapsulated-task-template.hbs"}}
+{{/docs-demo}}

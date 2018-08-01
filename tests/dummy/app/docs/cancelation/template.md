@@ -34,26 +34,27 @@
 
 <h3>Example</h3>
 
-{{! BEGIN-SNIPPET cancelation-template.hbs }}
-<h4>Running tasks: {{count}}</h4>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='cancelation-template.hbs'}}
+    <h4>Running tasks: {{count}}</h4>
 
-<button class="button" {{action 'performTask'}}>Perform Task</button>
-{{#if count}}
-  <button class="button" {{action 'cancelAll'}}>Cancel All</button>
-{{/if}}
-{{#if mostRecent.isRunning}}
-  <button class="button" {{action 'cancelMostRecent'}}>Cancel Most Recent</button>
-{{/if}}
-{{! END-SNIPPET }}
+    <button class="button" {{action 'performTask'}}>Perform Task</button>
+    {{#if count}}
+      <button class="button" {{action 'cancelAll'}}>Cancel All</button>
+    {{/if}}
+    {{#if mostRecent.isRunning}}
+      <button class="button" {{action 'cancelMostRecent'}}>Cancel Most Recent</button>
+    {{/if}}
+  {{/demo.example}}
+
+  {{demo.snippet "cancelation-template.hbs"}}
+  {{demo.snippet "cancelation.js"}}
+{{/docs-demo}}
 
 <p>
   <em>
     Tip: You can also use the <code>.concurrency</code> property to get
     the current number of running task instances for a given task,
-    e.g. <code>\{{myTask.concurrency}}</code>: {{myTask.concurrency}}
+    e.g. <code>\\{{myTask.concurrency}}</code>: {{myTask.concurrency}}
   </em>
 </p>
-
-{{docs-snippet name="cancelation-template.hbs"}}
-{{docs-snippet name="cancelation.js"}}
-

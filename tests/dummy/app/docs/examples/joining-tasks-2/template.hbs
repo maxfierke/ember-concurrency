@@ -7,26 +7,27 @@
 
 <h2>Live Example</h2>
 
-<h4>Status: {{status}}</h4>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='joining-tasks-2-template.hbs'}}
+    <h4>Status: {{status}}</h4>
 
-{{! BEGIN-SNIPPET joining-tasks-2-template.hbs }}
-<p>
-  <button class="button" onclick={{perform parent 'all'}}>all()</button>
-  <button class="button" onclick={{perform parent 'race'}}>race()</button>
-</p>
-{{! END-SNIPPET }}
+    <p>
+      <button class="button" onclick={{perform parent 'all'}}>all()</button>
+      <button class="button" onclick={{perform parent 'race'}}>race()</button>
+    </p>
 
-{{#each childTasks as |ti|}}
-  <div class="progress-outer">
-    <div class="progress-inner" style={{progress-style ti.percent ti.id colors}}>
-      Progress: {{ti.percent}}%
-      {{#if ti.value}}
-        Word: {{ti.value}}
-      {{/if}}
-    </div>
-  </div>
-{{/each}}
+    {{#each childTasks as |ti|}}
+      <div class="progress-outer">
+        <div class="progress-inner" style={{progress-style ti.percent ti.id colors}}>
+          Progress: {{ti.percent}}%
+          {{#if ti.value}}
+            Word: {{ti.value}}
+          {{/if}}
+        </div>
+      </div>
+    {{/each}}
+  {{/demo.example}}
 
-{{docs-snippet name="joining-tasks-2.js"}}
-{{docs-snippet name="joining-tasks-2-template.hbs"}}
-
+  {{demo.snippet "joining-tasks-2.js" label='controller.js'}}
+  {{demo.snippet "joining-tasks-2-template.hbs" label='template.hbs'}}
+{{/docs-demo}}

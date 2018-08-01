@@ -10,24 +10,25 @@
 
 <h3>Example</h3>
 
-{{! BEGIN-SNIPPET child-tasks-template.hbs }}
-<h4>{{status}}</h4>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='child-tasks-template.hbs'}}
+    <h4>{{status}}</h4>
 
-<ul>
-  <li>Parent Task:     {{parentTask.state}}</li>
-  <li>Child Task:      {{childTask.state}}</li>
-  <li>Grandchild Task: {{grandchildTask.state}}</li>
-</ul>
+    <ul>
+      <li>Parent Task:     {{parentTask.state}}</li>
+      <li>Child Task:      {{childTask.state}}</li>
+      <li>Grandchild Task: {{grandchildTask.state}}</li>
+    </ul>
 
-<button class="button" onclick={{perform parentTask}}>
-  {{#if parentTask.isRunning}}
-    Restart Parent Task
-  {{else}}
-    Perform Parent Task
-  {{/if}}
-</button>
-{{! END-SNIPPET }}
+    <button class="button" onclick={{perform parentTask}}>
+      {{#if parentTask.isRunning}}
+        Restart Parent Task
+      {{else}}
+        Perform Parent Task
+      {{/if}}
+    </button>
+  {{/demo.example}}
 
-{{docs-snippet name="child-tasks.js"}}
-{{docs-snippet name="child-tasks-template.hbs"}}
-
+  {{demo.snippet "child-tasks.js"}}
+  {{demo.snippet "child-tasks-template.hbs"}}
+{{/docs-demo}}

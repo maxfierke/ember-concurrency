@@ -32,22 +32,23 @@
   of related buttons in a button bar.
 </p>
 
-{{! BEGIN-SNIPPET task-groups-template.hbs }}
-{{#each tasks as |task|}}
-  <button class="button {{if task.isIdle 'clickable'}}"
-          onclick={{perform task}}>{{task.name}}</button>
-{{/each}}
+{{#docs-demo as |demo|}}
+  {{#demo.example name='task-groups-template.hbs'}}
+    {{#each tasks as |task|}}
+      <button class="button {{if task.isIdle 'clickable'}}"
+              onclick={{perform task}}>{{task.name}}</button>
+    {{/each}}
 
-<h4>Chores group state: {{chores.state}}</h4>
+    <h4>Chores group state: {{chores.state}}</h4>
 
-<h4>
-  Most Recent Chore:
-  {{#with chores.last as |taskInstance|}}
-    {{taskInstance.task.name}} ({{taskInstance.state}})
-  {{/with}}
-</h4>
-{{! END-SNIPPET }}
+    <h4>
+      Most Recent Chore:
+      {{#with chores.last as |taskInstance|}}
+        {{taskInstance.task.name}} ({{taskInstance.state}})
+      {{/with}}
+    </h4>
+  {{/demo.example}}
 
-{{docs-snippet name="task-groups.js"}}
-{{docs-snippet name="task-groups-template.hbs"}}
-
+  {{demo.snippet "task-groups.js"}}
+  {{demo.snippet "task-groups-template.hbs"}}
+{{/docs-demo}}

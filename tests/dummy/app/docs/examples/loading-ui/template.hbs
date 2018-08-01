@@ -20,27 +20,27 @@
 
 <h2>Live Example</h2>
 
-<p>
-  What is the meaning of life?
-  {{#if result}} Answer: {{result}} {{/if}}
+{{#docs-demo as |demo|}}
+  {{#demo.example name='ask-button.hbs'}}
+    <p>
+      What is the meaning of life?
+      {{#if result}} Answer: {{result}} {{/if}}
 
-</p>
+    </p>
 
-<p>
-  {{! BEGIN-SNIPPET ask-button.hbs }}
-  <button class="button {{if askQuestion.isIdle 'button-primary'}}"
-    onclick={{perform askQuestion}}>
-        {{#if askQuestion.isIdle}}
-          Ask
-        {{else}}
-          Thinking...
-          {{loading-spinner}}
-        {{/if}}
-  </button>
-  {{! END-SNIPPET }}
-</p>
+    <p>
+      <button class="button {{if askQuestion.isIdle 'button-primary'}}"
+        onclick={{perform askQuestion}}>
+            {{#if askQuestion.isIdle}}
+              Ask
+            {{else}}
+              Thinking...
+              {{loading-spinner}}
+            {{/if}}
+      </button>
+    </p>
+  {{/demo.example}}
 
-{{docs-snippet name="loading-ui-controller.js"}}
-
-{{docs-snippet name="ask-button.hbs"}}
-
+  {{demo.snippet "loading-ui-controller.js" label='controller.js'}}
+  {{demo.snippet "ask-button.hbs" label='template.hbs'}}
+{{/docs-demo}}

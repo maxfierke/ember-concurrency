@@ -127,23 +127,23 @@
     <h4>{{task.name}} (performCount={{task.performCount}} concurrency={{task.concurrency}})</h4>
 
     <p>
-      <button class="button" onclick={{perform task false}}
-        class={{if task.isIdle 'button-primary'}}>
+      <button onclick={{perform task false}}
+        class="button {{if task.isIdle 'button-primary'}}">
         Run to Completion
       </button>
-      <button class="button" onclick={{perform task true}}
-        class={{if task.isIdle 'button-primary'}}>
+      <button onclick={{perform task true}}
+        class="button {{if task.isIdle 'button-primary'}}">
         Run until Error
       </button>
-      <button class="button" onclick={{cancel-all task}}
-        class={{if task.isRunning 'button-primary'}}>
+      <button onclick={{cancel-all task}}
+        class="button {{if task.isRunning 'button-primary'}}">
         Cancel
       </button>
     </p>
 
-    <table class="u-full-width completion-state-table">
+    <table class="w-full completion-state-table">
       <thead>
-        <tr>
+        <tr class="border-b-2 border-grey-lighter font-medium">
           <th>Completion Property</th>
           <th>.value</th>
           <th>.error</th>

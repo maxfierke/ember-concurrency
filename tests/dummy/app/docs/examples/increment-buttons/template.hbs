@@ -15,35 +15,28 @@
 
 <h4>Live Example</h4>
 
-<h1>Num: {{count}}</h1>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='press-and-hold-buttons.hbs'}}
+    <h3>Num: {{count}}</h3>
 
-<p>(Hold down the buttons to accelerate.)</p>
+    <p>(Hold down the buttons to accelerate.)</p>
 
-{{! BEGIN-SNIPPET press-and-hold-buttons.hbs }}
-<p>
-  {{#press-and-hold-button
-    press=(perform incrementBy -1)
-    release=(cancel-all incrementBy)}}
-      --Decrease
-  {{/press-and-hold-button}}
+    {{#press-and-hold-button
+      class="button"
+      press=(perform incrementBy -1)
+      release=(cancel-all incrementBy)}}
+        --Decrease
+    {{/press-and-hold-button}}
 
-  {{#press-and-hold-button
-    press=(perform incrementBy 1)
-    release=(cancel-all incrementBy)}}
-      Increase++
-  {{/press-and-hold-button}}
-</p>
-{{! END-SNIPPET }}
+    {{#press-and-hold-button
+      class="button"
+      press=(perform incrementBy 1)
+      release=(cancel-all incrementBy)}}
+        Increase++
+    {{/press-and-hold-button}}
+  {{/demo.example}}
 
-<h4>JavaScript (task)</h4>
-
-{{docs-snippet name="increment-button-task.js"}}
-
-<h4>JavaScript (button component)</h4>
-
-{{docs-snippet name="increment-button.js"}}
-
-<h4>Template</h4>
-
-{{docs-snippet name="press-and-hold-buttons.hbs"}}
-
+  {{demo.snippet "increment-button-task.js" label='controller.js'}}
+  {{demo.snippet "increment-button.js" label='component.js'}}
+  {{demo.snippet "press-and-hold-buttons.hbs" label='template.hbs'}}
+{{/docs-demo}}

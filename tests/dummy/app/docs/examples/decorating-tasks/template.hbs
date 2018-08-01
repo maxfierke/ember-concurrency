@@ -35,15 +35,18 @@
   they're running.
 </p>
 
-{{! BEGIN-SNIPPET decorating-tasks-template-isIdle.hbs }}
-<p>
-  {{#each tasks as |task|}}
-    <button class="button" {{action task.perform}} class={{if task.isIdle 'button-primary'}}>
-      {{task.name}}
-    </button>
-  {{/each}}
-</p>
-{{! END-SNIPPET }}
+{{#docs-demo as |demo|}}
+  {{#demo.example name='decorating-tasks-template-isIdle.hbs'}}
+    {{#each tasks as |task|}}
+      <button class="button" {{action task.perform}} class={{if task.isIdle 'button-primary'}}>
+        {{task.name}}
+      </button>
+    {{/each}}
+  {{/demo.example}}
+
+  {{demo.snippet "decorating-tasks-template-isIdle.hbs"}}
+  {{demo.snippet "decorating-tasks.js"}}
+{{/docs-demo}}
 
 <p>
   The buttons below use <code>.performWillSucceed</code> instead of <code>.isIdle</code>
@@ -57,17 +60,15 @@
   <em>anyone</em> is performing <code>sharedTask</code>.
 </p>
 
-{{! BEGIN-SNIPPET decorating-tasks-template-performWillSucceed.hbs }}
-<p>
-  {{#each tasks as |task|}}
-    <button class="button" {{action task.perform}} class={{if task.performWillSucceed 'button-primary'}}>
-      {{task.name}}
-    </button>
-  {{/each}}
-</p>
-{{! END-SNIPPET }}
+{{#docs-demo as |demo|}}
+  {{#demo.example name='decorating-tasks-template-performWillSucceed.hbs'}}
+    {{#each tasks as |task|}}
+      <button class="button" {{action task.perform}} class={{if task.performWillSucceed 'button-primary'}}>
+        {{task.name}}
+      </button>
+    {{/each}}
+  {{/demo.example}}
 
-{{docs-snippet name="decorating-tasks.js"}}
-{{docs-snippet name="decorating-tasks-template-isIdle.hbs"}}
-{{docs-snippet name="decorating-tasks-template-performWillSucceed.hbs"}}
-
+  {{demo.snippet "decorating-tasks-template-performWillSucceed.hbs"}}
+  {{demo.snippet "decorating-tasks.js"}}
+{{/docs-demo}}

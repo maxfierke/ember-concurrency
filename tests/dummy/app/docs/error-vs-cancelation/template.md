@@ -60,24 +60,24 @@
   cancelations skip the <code>catch</code> block.
 </p>
 
-{{! BEGIN-SNIPPET error-vs-cancelation-template.hbs }}
-<button class="button" onclick={{perform myTask false}}>
-  Run to Completion
-</button>
+{{#docs-demo as |demo|}}
+  {{#demo.example name='error-vs-cancelation-template.hbs'}}
+    <button class="button" onclick={{perform myTask false}}>
+      Run to Completion
+    </button>
 
-<button class="button" onclick={{perform myTask true}}>
-  Throw an Error
-</button>
+    <button class="button" onclick={{perform myTask true}}>
+      Throw an Error
+    </button>
 
-<ul>
-  <li>Task State: {{myTask.state}}</li>
-  <li>Completions: {{numCompletions}}</li>
-  <li>Errors: {{numErrors}}</li>
-  <li>Finally block runs: {{numFinallys}}</li>
-</ul>
+    <ul>
+      <li>Task State: {{myTask.state}}</li>
+      <li>Completions: {{numCompletions}}</li>
+      <li>Errors: {{numErrors}}</li>
+      <li>Finally block runs: {{numFinallys}}</li>
+    </ul>
+  {{/demo.example}}
 
-{{! END-SNIPPET }}
-
-{{docs-snippet name="error-vs-cancelation-template.hbs"}}
-{{docs-snippet name="error-vs-cancelation.js"}}
-
+  {{demo.snippet "error-vs-cancelation-template.hbs"}}
+  {{demo.snippet "error-vs-cancelation.js"}}
+{{/docs-demo}}

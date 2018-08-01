@@ -30,29 +30,22 @@
   (Please mind the GitHub API quota :)
 </p>
 
-<p>
-{{! BEGIN-SNIPPET debounced-search-with-cancelation-template.hbs }}
-  <input type="text" oninput={{perform searchRepo value="target.value"}}
+{{#docs-demo as |demo|}}
+  {{#demo.example name='debounced-search-with-cancelation-template.hbs'}}
+    <input type="text" oninput={{perform searchRepo value="target.value"}}
          placeholder="Search GitHub..." />
 
-  {{#if searchRepo.isRunning}}
-    {{loading-spinner}}
-  {{/if}}
+    {{#if searchRepo.isRunning}}
+      {{loading-spinner}}
+    {{/if}}
 
-  <ul>
-    {{#each searchRepo.lastSuccessful.value as |repo|}}
-      <li>{{repo.full_name}}</li>
-    {{/each}}
-  </ul>
-{{! END-SNIPPET }}
-</p>
+    <ul>
+      {{#each searchRepo.lastSuccessful.value as |repo|}}
+        <li>{{repo.full_name}}</li>
+      {{/each}}
+    </ul>
+  {{/demo.example}}
 
-
-<h4>JavaScript</h4>
-
-{{docs-snippet name="debounced-search-with-cancelation.js"}}
-
-<h4>Template</h4>
-
-{{docs-snippet name="debounced-search-with-cancelation-template.hbs"}}
-
+  {{demo.snippet "debounced-search-with-cancelation-template.hbs"}}
+  {{demo.snippet "debounced-search-with-cancelation.js"}}
+{{/docs-demo}}
