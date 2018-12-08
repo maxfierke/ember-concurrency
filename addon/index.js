@@ -19,7 +19,7 @@ import { waitForQueue, waitForEvent, waitForProperty } from './-wait-for';
  * operations.
  *
  * You can also define an
- * <a href="/#/docs/encapsulated-task">Encapsulated Task</a>
+ * <a href="/docs/encapsulated-task">Encapsulated Task</a>
  * by passing in an object that defined a `perform` generator
  * function property.
  *
@@ -58,7 +58,7 @@ export function task(...args) {
 
 /**
  * "Task Groups" provide a means for applying
- * task modifiers to groups of tasks. Once a {@linkcode Task} is declared
+ * task modifiers to groups of tasks. Once a [`Task`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~Task) is declared
  * as part of a group task, modifiers like `drop()` or `restartable()`
  * will no longer affect the individual `Task`. Instead those
  * modifiers can be applied to the entire group.
@@ -90,12 +90,12 @@ export {
    * additional behavior:
    *
    * - if the task that `yield`ed `all()` is canceled, any of the
-   *   {@linkcode TaskInstance}s passed in to `all` will be canceled
-   * - if any of the {@linkcode TaskInstance}s (or regular promises) passed in reject (or
+   *   [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s passed in to `all` will be canceled
+   * - if any of the [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s (or regular promises) passed in reject (or
    *   are canceled), all of the other unfinished `TaskInstance`s will
    *   be automatically canceled.
    *
-   * [Check out the "Awaiting Multiple Child Tasks example"](/#/docs/examples/joining-tasks)
+   * [Check out the "Awaiting Multiple Child Tasks example"](/docs/examples/joining-tasks)
    *
    * @function all
    * @export named
@@ -110,7 +110,7 @@ export {
    * additional behavior:
    *
    * - if the task that `yield`ed `allSettled()` is canceled, any of the
-   *   {@linkcode TaskInstance}s passed in to `allSettled` will be canceled
+   *   [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s passed in to `allSettled` will be canceled
    *
    * @function allSettled
    * @export named
@@ -121,7 +121,7 @@ export {
   /**
    * Returns true if the object passed to it is a TaskCancelation error.
    * If you call `someTask.perform().catch(...)` or otherwise treat
-   * a {@linkcode TaskInstance} like a promise, you may need to
+   * a [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance) like a promise, you may need to
    * handle the cancelation of a TaskInstance differently from
    * other kinds of errors it might throw, and you can use this
    * convenience function to distinguish cancelation from errors.
@@ -148,9 +148,9 @@ export {
    * additional behavior:
    *
    * - if the task that `yield`ed `hash()` is canceled, any of the
-   *   {@linkcode TaskInstance}s passed in to `allSettled` will be canceled
+   *   [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s passed in to `allSettled` will be canceled
    * - if any of the items rejects/cancels, all other cancelable items
-   *   (e.g. {@linkcode TaskInstance}s) will be canceled
+   *   (e.g. [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s) will be canceled
    *
    * @function hash
    * @export named
@@ -165,11 +165,11 @@ export {
    * additional behavior:
    *
    * - if the task that `yield`ed `race()` is canceled, any of the
-   *   {@linkcode TaskInstance}s passed in to `race` will be canceled
+   *   [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s passed in to `race` will be canceled
    * - once any of the tasks/promises passed in complete (either success, failure,
-   *   or cancelation), any of the {@linkcode TaskInstance}s passed in will be canceled
+   *   or cancelation), any of the [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s passed in will be canceled
    *
-   * [Check out the "Awaiting Multiple Child Tasks example"](/#/docs/examples/joining-tasks)
+   * [Check out the "Awaiting Multiple Child Tasks example"](/docs/examples/joining-tasks)
    *
    * @function race
    * @export named

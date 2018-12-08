@@ -241,10 +241,10 @@
     by another app. #46
 
 ### 0.6.0
-  - feature: Task Groups: http://ember-concurrency.com/#/docs/task-groups.
+  - feature: Task Groups: http://ember-concurrency.com/docs/task-groups.
     Task Groups let you enforce concurrency constraints across multiple
     tasks, which previously wasn't possible.
-  - feature: Moar Derived State: http://ember-concurrency.com/#/docs/derived-state
+  - feature: Moar Derived State: http://ember-concurrency.com/docs/derived-state
     Task Instances now expose .value and .error properties for the
     value returned from the task function, or the error thrown from it.
     Furthermore: Task objects expose `last` and `lastSuccessful`, which

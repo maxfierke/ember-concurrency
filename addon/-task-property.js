@@ -41,10 +41,10 @@ const PerformProxy = EmberObject.extend({
  * The `Task` object lives on a host Ember object (e.g.
  * a Component, Route, or Controller). You call the
  * {@linkcode Task#perform .perform()} method on this object
- * to create run individual {@linkcode TaskInstance}s,
+ * to create run individual [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s,
  * and at any point, you can call the {@linkcode Task#cancelAll .cancelAll()}
  * method on this object to cancel all running or enqueued
- * {@linkcode TaskInstance}s.
+ * [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance)s.
  *
  * A Task is returned when accessing a task property on an object and should not
  * be created manually or imported directly.
@@ -236,7 +236,7 @@ export const Task = EmberObject.extend(TaskStateMixin, {
   _taskInstanceFactory: TaskInstance,
 
   /**
-   * Creates a new {@linkcode TaskInstance} and attempts to run it right away.
+   * Creates a new [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance) and attempts to run it right away.
    * If running this task instance would increase the task's concurrency
    * to a number greater than the task's maxConcurrency, this task
    * instance might be immediately canceled (dropped), or enqueued
@@ -290,11 +290,11 @@ export const Task = EmberObject.extend(TaskStateMixin, {
 });
 
 /**
- * A {@link TaskProperty} is the Computed Property-like object returned
- * from the {@linkcode task} function. You can call Task Modifier methods
+ * A [`TaskProperty`](/docs/api/modules/ember-concurrency/-task-property) is the Computed Property-like object returned
+ * from the [`Task`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~Task) function. You can call Task Modifier methods
  * on this object to configure the behavior of the {@link Task}.
  *
- * See [Managing Task Concurrency](/#/docs/task-concurrency) for an
+ * See [Managing Task Concurrency](/docs/task-concurrency) for an
  * overview of all the different task modifiers you can use and how
  * they impact automatic cancelation / enqueueing of task instances.
  *
@@ -365,7 +365,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * });
    * ```
    *
-   * [See the Writing Tasks Docs for more info](/#/docs/writing-tasks)
+   * [See the Writing Tasks Docs for more info](/docs/writing-tasks)
    *
    * @method on
    * @param {String} ...eventNames
@@ -382,7 +382,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * but instead will cause the task to be canceled if any of the
    * specified events fire on the parent object.
    *
-   * [See the Live Example](/#/docs/examples/route-tasks/1)
+   * [See the Live Example](/docs/examples/route-tasks/1)
    *
    * @method cancelOn
    * @param {String} ...eventNames
@@ -411,7 +411,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * to make room for a new one to perform. Sets default
    * maxConcurrency to 1.
    *
-   * [See the Live Example](/#/docs/examples/route-tasks/1)
+   * [See the Live Example](/docs/examples/route-tasks/1)
    *
    * @method restartable
    * @return {TaskProperty}
@@ -455,7 +455,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * to set the maximum number of concurrently running tasks
    * to a number greater than 1.
    *
-   * [See the AJAX Throttling example](/#/docs/examples/ajax-throttling)
+   * [See the AJAX Throttling example](/docs/examples/ajax-throttling)
    *
    * The example below uses a task with `maxConcurrency(3)` to limit
    * the number of concurrent AJAX requests (for anyone using this task)
@@ -480,7 +480,7 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
    * Adds this task to a TaskGroup so that concurrency constraints
    * can be shared between multiple tasks.
    *
-   * [See the Task Group docs for more information](/#/docs/task-groups)
+   * [See the Task Group docs for more information](/docs/task-groups)
    *
    * @method group
    * @param {String} groupPath A path to the TaskGroup property

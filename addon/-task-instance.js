@@ -60,14 +60,17 @@ function spliceSlice(str, index, count, add) {
 
 /**
  * A `TaskInstance` represent a single execution of a
- * {@linkcode Task}. Every call to {@linkcode Task#perform} returns
- * a `TaskInstance`.
+ * [`Task`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~Task).
+ * Every call to [`Task#perform`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~Task#perform)
+ * returns a `TaskInstance`.
  *
  * `TaskInstance`s are cancelable, either explicitly
- * via {@linkcode TaskInstance#cancel} or {@linkcode Task#cancelAll},
+ * via [`TaskInstance#cancel`](#cancel)
+ * or [`Task#cancelAll`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~Task#cancelAll),
  * or automatically due to the host object being destroyed, or
  * because concurrency policy enforced by a
- * {@linkcode TaskProperty Task Modifier} canceled the task instance.
+ * [Task Modifier](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~Task)
+ * canceled the task instance.
  *
  * TaskInstances may be returned by calling `perform` on a `Task`, but they
  * should not be created manually or imported directly.
@@ -186,10 +189,10 @@ let taskInstanceAttrs = {
    * - `"running"`: task instance is currently running (returns true even if
    *     is paused on a yielded promise)
    * - `"waiting"`: task instance hasn't begun running yet (usually
-   *     because the task is using the {@linkcode TaskProperty#enqueue .enqueue()}
+   *     because the task is using the [`.enqueue()`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-property~TaskProperty#enqueue)
    *     task modifier)
    *
-   * The animated timeline examples on the [Task Concurrency](/#/docs/task-concurrency)
+   * The animated timeline examples on the [Task Concurrency](/docs/task-concurrency)
    * docs page make use of this property.
    *
    * @property state
@@ -226,7 +229,7 @@ let taskInstanceAttrs = {
   }),
 
   /**
-   * Event emitted when a new {@linkcode TaskInstance} starts executing.
+   * Event emitted when a new [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance) starts executing.
    *
    * `on` from `@ember/object/evented` may be used to create a binding on the host object to the event.
    *
@@ -247,7 +250,7 @@ let taskInstanceAttrs = {
    */
 
   /**
-   * Event emitted when a {@linkcode TaskInstance} succeeds.
+   * Event emitted when a [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance) succeeds.
    *
    * `on` from `@ember/object/evented` may be used to create a binding on the host object to the event.
    *
@@ -268,7 +271,7 @@ let taskInstanceAttrs = {
    */
 
   /**
-   * Event emitted when a {@linkcode TaskInstance} throws an an error that is
+   * Event emitted when a [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance) throws an an error that is
    * not handled within the task itself.
    *
    * `on` from `@ember/object/evented` may be used to create a binding on the host object to the event.
@@ -291,7 +294,7 @@ let taskInstanceAttrs = {
    */
 
   /**
-   * Event emitted when a {@linkcode TaskInstance} is canceled.
+   * Event emitted when a [`TaskInstance`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance) is canceled.
    *
    * `on` from `@ember/object/evented` may be used to create a binding on the host object to the event.
    *
@@ -309,7 +312,7 @@ let taskInstanceAttrs = {
    *
    * @event TaskInstance#TASK_NAME:canceled
    * @param {TaskInstance} taskInstance - Task instance that was started
-   * @param {string} cancelationReason - Cancelation reason that was was provided to {@linkcode TaskInstance#cancel}
+   * @param {string} cancelationReason - Cancelation reason that was was provided to [`TaskInstance#cancel`](http://localhost:4200/docs/api/modules/ember-concurrency/-task-instance~TaskInstance#cancel)
    */
 
   _index: 1,
