@@ -223,6 +223,7 @@ export const Task = EmberObject.extend(TaskStateMixin, {
     return Task.create({
       fn: this.fn,
       context: this.context,
+      cancelationToken: this.cancelationToken,
       _origin: this._origin,
       _taskGroupPath: this._taskGroupPath,
       _scheduler: this._scheduler,
@@ -384,7 +385,7 @@ export const Task = EmberObject.extend(TaskStateMixin, {
       linkedObject._expectsLinkedYield = true;
     }
 
-    if (this.context.isDestroying) {
+    if (this.cancelationToken.isCancelationRequested) {
       // TODO: express this in terms of lifetimes; a task linked to
       // a dead lifetime should immediately cancel.
       taskInstance.cancel();

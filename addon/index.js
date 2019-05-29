@@ -8,6 +8,7 @@ import { all, allSettled, hash, race } from './-cancelable-promise-helpers';
 import { waitForQueue, waitForEvent, waitForProperty } from './-wait-for';
 import { resolveScheduler } from './-property-modifiers-mixin';
 import { gte } from 'ember-compatibility-helpers';
+import { EmberObjectCancelationToken } from './-cancelation-token';
 
 const setDecorator = Ember._setClassicDecorator || Ember._setComputedDecorator;
 
@@ -80,6 +81,7 @@ export function task(taskFn) {
     return Task.create({
       fn: tp.taskFn,
       context: this,
+      cancelationToken: new EmberObjectCancelationToken(this),
       _origin: this,
       _taskGroupPath: tp._taskGroupPath,
       _scheduler: resolveScheduler(tp, this, TaskGroup),
@@ -122,6 +124,7 @@ export function taskGroup(taskFn) {
     return TaskGroup.create({
       fn: tp.taskFn,
       context: this,
+      cancelationToken: new EmberObjectCancelationToken(this),
       _origin: this,
       _taskGroupPath: tp._taskGroupPath,
       _scheduler: resolveScheduler(tp, this, TaskGroup),

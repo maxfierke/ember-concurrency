@@ -778,10 +778,11 @@ taskInstanceAttrs[yieldableSymbol] = function handleYieldedTaskInstance(parentTa
     if (yieldedTaskInstance._performType !== PERFORM_TYPE_UNLINKED) {
       if (yieldedTaskInstance._performType === PERFORM_TYPE_DEFAULT) {
         let parentObj = get(parentTaskInstance, 'task.context');
+        let parentCancelationToken = get(parentTaskInstance, 'task.cancelationToken');
         let childObj = get(yieldedTaskInstance, 'task.context');
         if (parentObj && childObj &&
             parentObj !== childObj &&
-            parentObj.isDestroying &&
+            parentCancelationToken.isCancelationRequested &&
             get(yieldedTaskInstance, 'isRunning')) {
           let parentName = `\`${parentTaskInstance.task._propertyName}\``;
           let childName = `\`${yieldedTaskInstance.task._propertyName}\``;
