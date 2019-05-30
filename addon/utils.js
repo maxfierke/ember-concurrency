@@ -10,16 +10,18 @@ export function isEventedObject(c) {
   ));
 }
 
-export function Arguments(args, defer) {
-  this.args = args;
-  this.defer = defer;
+export class Arguments {
+  constructor(args, defer) {
+    this.args = args;
+    this.defer = defer;
+  }
+  resolve(value) {
+    if (this.defer) {
+      this.defer.resolve(value);
+    }
+  }
 }
 
-Arguments.prototype.resolve = function(value) {
-  if (this.defer) {
-    this.defer.resolve(value);
-  }
-};
 
 
 export let objectAssign = Object.assign || function objectAssign(target) {

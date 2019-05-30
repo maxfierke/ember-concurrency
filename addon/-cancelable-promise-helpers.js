@@ -1,4 +1,5 @@
 import RSVP, { Promise } from 'rsvp';
+import { CancelationToken } from 'ember-concurrency/-cancelation-token';
 import TaskInstance from './-task-instance';
 import { yieldableSymbol } from './utils';
 
@@ -34,12 +35,14 @@ export const all = (things) => {
     }
   }
 
+  let cancelationToken = new CancelationToken();
   let isAsync = false;
   let taskInstances = things.map(thing => {
     let ti = TaskInstance.create({
       // TODO: consider simpler iterator than full on generator fn?
       fn: resolver,
       args: [thing],
+      cancelationToken
     })._start();
 
     if (ti._completionState !== 1) {

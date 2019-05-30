@@ -1,6 +1,7 @@
 import { resolve } from 'rsvp';
 import $ from 'jquery';
 import { test as qunitTest } from 'ember-qunit';
+import { CancelationTokenSource } from 'ember-concurrency/-cancelation-token';
 import { wrap, go } from 'ember-concurrency/-task-instance';
 import { run } from "@ember/runloop";
 import { visit, click, settled } from '@ember/test-helpers';
@@ -59,12 +60,15 @@ function test(description, fn) {
     Object.assign(this, HELPER_METHODS);
     window.QUnit.config.current._isTaskTest = true;
     let qunitDone = assert.async();
+    let cancelationTokenSource = new CancelationTokenSource();
+    let cancelationToken = cancelationTokenSource.createToken();
     let done = () => {
+      cancelationToken.cancel();
       run.backburner.cancelTimers();
       qunitDone();
     };
     if (fn.constructor.name === 'GeneratorFunction') {
-      go([assert], fn, {
+      go([assert], fn, cancelationToken, {
         _runLoop: false,
         context: this,
       }).finally(done);

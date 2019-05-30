@@ -12,6 +12,7 @@ import {
   YIELDABLE_CANCEL,
   RawValue
 } from './utils';
+import { CancelationToken } from 'ember-concurrency/-cancelation-token';
 
 const TASK_CANCELATION_NAME = 'TaskCancelation';
 
@@ -326,7 +327,13 @@ let taskInstanceAttrs = {
   _index: 1,
 
   _start() {
-    if (this.hasStarted || this.isCanceling) { return this; }
+    if (this.hasStarted || this.isCanceling) {
+      return this;
+    } else if (this.cancelationToken.isCancelationRequested) {
+      this.cancel("cancelation was requested for the token");
+      return this;
+    }
+
     set(this, 'hasStarted', true);
     this._scheduleProceed(YIELDABLE_CONTINUE, undefined);
     this._triggerEvent('started', this);
@@ -619,11 +626,13 @@ let taskInstanceAttrs = {
   },
 
   proceed(index, yieldResumeType, value) {
-    if (this._completionState) { return; }
-    if (!this._advanceIndex(index)) {
+    if (this._completionState || !this._advanceIndex(index)) {
       return;
+    } else if (this.cancelationToken.isCancelationRequested && !this.isCanceling) {
+      this.cancel("cancelation was requested for the token");
+    } else {
+      this._proceedSoon(yieldResumeType, value);
     }
-    this._proceedSoon(yieldResumeType, value);
   },
 
   _scheduleProceed(yieldResumeType, value) {
@@ -798,15 +807,16 @@ taskInstanceAttrs[yieldableSymbol] = function handleYieldedTaskInstance(parentTa
 
 let TaskInstance = EmberObject.extend(taskInstanceAttrs);
 
-export function go(args, fn, attrs = {}) {
+export function go(args, fn, cancelationToken, attrs = {}) {
   return TaskInstance.create(
-    Object.assign({ args, fn, context: this }, attrs)
+    Object.assign({ args, fn, cancelationToken, context: this }, attrs)
   )._start();
 }
 
 export function wrap(fn, attrs = {}) {
+  let cancelationToken = new CancelationToken();
   return function wrappedRunnerFunction(...args) {
-    return go.call(this, args, fn, attrs);
+    return go.call(this, args, fn, cancelationToken, attrs);
   };
 }
 

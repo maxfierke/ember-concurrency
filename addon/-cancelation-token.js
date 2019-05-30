@@ -12,6 +12,17 @@ export class CancelationToken {
   }
 }
 
+export class EmberObjectCancelationToken extends CancelationToken {
+  constructor(obj, canceled = false) {
+    super(canceled);
+    this._obj = obj;
+  }
+
+  get isCancelationRequested() {
+    return this._obj.isDestroying || this._obj.isDestroyed || super.isCancelationRequested;
+  }
+}
+
 export class CancelationTokenSource {
   createToken() {
     return new CancelationToken();
@@ -26,16 +37,5 @@ export class EmberObjectCancelationTokenSource extends CancelationTokenSource {
 
   createToken() {
     return new EmberObjectCancelationToken(this._obj);
-  }
-}
-
-export class EmberObjectCancelationToken extends CancelationToken {
-  constructor(obj, canceled = false) {
-    super(canceled);
-    this._obj = obj;
-  }
-
-  get isCancelationRequested() {
-    return this._obj.isDestroying || this._obj.isDestroyed || super.isCancelationRequested;
   }
 }

@@ -6,6 +6,7 @@ import {
   didCancel
 } from 'ember-concurrency/-task-instance';
 import { module, test } from 'qunit';
+import { CancelationToken } from 'ember-concurrency/-cancelation-token';
 
 module('Unit: task instance', function() {
   test("basics", function(assert) {
@@ -20,6 +21,7 @@ module('Unit: task instance', function() {
         },
         args: [1,2,3],
         context,
+        cancelationToken: new CancelationToken()
       })._start();
     });
   });
@@ -214,6 +216,7 @@ module('Unit: task instance', function() {
           assert.deepEqual(args, [1,2,3]);
         },
         args: [1,2,3],
+        cancelationToken: new CancelationToken(),
       });
     });
 
@@ -234,6 +237,7 @@ module('Unit: task instance', function() {
           assert.ok(false, "should not get here");
         },
         args: [],
+        cancelationToken: new CancelationToken()
       });
     });
 
@@ -241,6 +245,28 @@ module('Unit: task instance', function() {
 
     run(() => {
       taskInstance.cancel();
+      taskInstance._start();
+    });
+    assert.ok(!taskInstance.get('hasStarted'));
+    assert.ok(taskInstance.get('isCanceled'));
+  });
+
+  test("deferred start: .cancel() before ._start() with a canceled cancelation token", function(assert) {
+    assert.expect(4);
+
+    let taskInstance = run(() => {
+      return TaskInstance.create({
+        *fn() {
+          assert.ok(false, "should not get here");
+        },
+        args: [],
+        cancelationToken: new CancelationToken(true)
+      });
+    });
+
+    expectCancelation(assert, taskInstance, "TaskInstance '<unknown>' was canceled because cancelation was requested for the token. For more information, see: http://ember-concurrency.com/docs/task-cancelation-help");
+
+    run(() => {
       taskInstance._start();
     });
     assert.ok(!taskInstance.get('hasStarted'));
@@ -458,6 +484,7 @@ module('Unit: task instance', function() {
           return 123;
         },
         args: [],
+        cancelationToken: new CancelationToken(),
       });
     });
 
@@ -475,6 +502,7 @@ module('Unit: task instance', function() {
           throw "justin bailey";
         },
         args: [],
+        cancelationToken: new CancelationToken(),
       });
     });
 
@@ -521,6 +549,7 @@ module('Unit: task instance', function() {
       return TaskInstance.create({
         *fn() {},
         args: [],
+        cancelationToken: new CancelationToken(),
       });
     });
 
@@ -540,6 +569,7 @@ module('Unit: task instance', function() {
           throw "wat";
         },
         args: [],
+        cancelationToken: new CancelationToken(),
       });
     });
 
@@ -685,6 +715,36 @@ module('Unit: task instance', function() {
           taskInstance.cancel();
           return 123;
         },
+        cancelationToken: new CancelationToken(),
+      })._start();
+    });
+
+    taskInstance.then(() => {
+      assert.ok(false);
+    }, (e) => {
+      assert.ok(didCancel(e), "canceling a task instance right before it returns is still considered a cancelation");
+    });
+
+    assert.ok(!taskInstance.get('isCanceling'));
+    run(null, defer.resolve);
+    assert.ok(taskInstance.get('isCanceling'));
+    assert.ok(taskInstance.get('isCanceled'));
+  });
+
+  test("canceling a task instance through a token should be async", function(assert) {
+    assert.expect(4);
+
+    let defer;
+    let cancelationToken = new CancelationToken();
+    let taskInstance = run(() => {
+      return TaskInstance.create({
+        *fn() {
+          defer = RSVP.defer();
+          yield defer.promise;
+          cancelationToken.cancel();
+          return 123;
+        },
+        cancelationToken,
       })._start();
     });
 

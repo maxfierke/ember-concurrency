@@ -172,6 +172,7 @@ export const Task = EmberObject.extend(TaskStateMixin, {
 
   fn: null,
   context: null,
+  cancelationTokenSource: null,
   _observes: null,
   _curryArgs: null,
   _linkedObjects: null,
