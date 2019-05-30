@@ -40,6 +40,8 @@ export default Mixin.create({
   numQueued: 0,
   _seenIndex: 0,
 
+  cancelationTokenSource: null,
+
   cancelAll(options) {
     let { reason, resetState } = options || {};
     reason = reason || ".cancelAll() was explicitly called on the Task";
@@ -72,4 +74,3 @@ export default Mixin.create({
     });
   },
 });
-

@@ -108,6 +108,7 @@ let taskInstanceAttrs = {
   cancelReason: null,
   _performType: PERFORM_TYPE_DEFAULT,
   _expectsLinkedYield: false,
+  cancelationToken: null,
 
   /**
    * If this TaskInstance runs to completion by returning a property
@@ -778,7 +779,7 @@ taskInstanceAttrs[yieldableSymbol] = function handleYieldedTaskInstance(parentTa
     if (yieldedTaskInstance._performType !== PERFORM_TYPE_UNLINKED) {
       if (yieldedTaskInstance._performType === PERFORM_TYPE_DEFAULT) {
         let parentObj = get(parentTaskInstance, 'task.context');
-        let parentCancelationToken = get(parentTaskInstance, 'task.cancelationToken');
+        let parentCancelationToken = get(parentTaskInstance, 'cancelationToken');
         let childObj = get(yieldedTaskInstance, 'task.context');
         if (parentObj && childObj &&
             parentObj !== childObj &&
