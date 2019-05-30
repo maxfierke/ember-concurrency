@@ -40,7 +40,7 @@ export default Mixin.create({
   numQueued: 0,
   _seenIndex: 0,
 
-  cancelationTokenSource: null,
+  cancelationToken: null,
 
   cancelAll(options) {
     let { reason, resetState } = options || {};

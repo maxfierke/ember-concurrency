@@ -22,20 +22,3 @@ export class EmberObjectCancelationToken extends CancelationToken {
     return this._obj.isDestroying || this._obj.isDestroyed || super.isCancelationRequested;
   }
 }
-
-export class CancelationTokenSource {
-  createToken() {
-    return new CancelationToken();
-  }
-}
-
-export class EmberObjectCancelationTokenSource extends CancelationTokenSource {
-  constructor(obj) {
-    super();
-    this._obj = obj;
-  }
-
-  createToken() {
-    return new EmberObjectCancelationToken(this._obj);
-  }
-}
